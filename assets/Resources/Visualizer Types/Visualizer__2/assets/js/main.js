@@ -6,10 +6,15 @@ const audio1 = document.getElementById('audio1')
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
+
 // context = context || new AudioContext();
 // source = source || context.createMediaElementSource(audio);
 
 const ctx = canvas.getContext('2d')
+ctx.shadowOffSetX = 2
+ctx.shadowOffSetY = 5
+ctx.shadowBlur = 0
+ctx.shadowColor = 'white'
 let audioSource
 let analyser
 
@@ -22,7 +27,7 @@ container.addEventListener('click', function(){
     analyser = audioContext.createAnalyser()
     audioSource.connect(analyser)
     analyser.connect(audioContext.destination)
-    analyser.fftSize = 2048
+    analyser.fftSize = 128
     const bufferLength = analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
 
@@ -53,7 +58,7 @@ file.addEventListener('change', function(){
     analyser = audioContext.createAnalyser()
     audioSource.connect(analyser)
     analyser.connect(audioContext.destination)
-    analyser.fftSize = 2048
+    analyser.fftSize = 128
     const bufferLength = analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
 
@@ -74,13 +79,22 @@ file.addEventListener('change', function(){
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
     
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 1.5
+        barHeight = dataArray[i] * 1.4
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i + Math.PI * 10 / bufferLength)
-        const hue = i * .9
+        ctx.rotate(i * bufferLength * 4)
+        const hue = 250 + i * 2
         ctx.fillStyle = 'hsl(' + hue + ', 100%, 50%)' 
-        ctx.fillRect(0, 0, barWidth, barHeight)
+        ctx.beginPath()
+        ctx.arc(0, barHeight, barHeight/10, 0, Math.PI * 2)
+      
+        ctx.arc(0, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
+        
+        ctx.arc(0, barHeight/2, barHeight/30, 0, Math.PI * 2)
+       
+        ctx.arc(0, barHeight/3, barHeight/40, 0, Math.PI * 2)
+        ctx.fill()
+
         x += barWidth
         ctx.restore()
     }

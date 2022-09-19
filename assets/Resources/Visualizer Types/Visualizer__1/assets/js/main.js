@@ -74,13 +74,17 @@ file.addEventListener('change', function(){
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
     
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 1.5
+        barHeight = dataArray[i] * 2.5
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i + Math.PI * 10 / bufferLength)
-        const hue = i * .9
-        ctx.fillStyle = 'hsl(' + hue + ', 100%, 50%)' 
-        ctx.fillRect(0, 0, barWidth, barHeight)
+        ctx.rotate(i * 4.184)
+        const hue = 120 + i * .3
+        ctx.fillStyle = 'hsl(' + hue + ', 100%,50%)'
+        ctx.beginPath()
+        ctx.arc(10, barHeight/2, barHeight/2, 0, Math.PI / 4)
+
+        ctx.fill()
+        ctx.stroke()
         x += barWidth
         ctx.restore()
     }
