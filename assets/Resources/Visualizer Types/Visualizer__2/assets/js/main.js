@@ -86,9 +86,9 @@ function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
         barHeight = dataArray[i] * 1.4
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i * bufferLength * 4)
+        ctx.rotate(i * bufferLength * -3.99999)
         const hue = 250 + i * 2
-        ctx.fillStyle = 'hsl(' + hue + ', 100%, 50%)' 
+        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
         ctx.beginPath()
         ctx.arc(0, barHeight, barHeight/10, 0, Math.PI * 2)
       
