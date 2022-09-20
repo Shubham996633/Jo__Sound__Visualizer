@@ -48,6 +48,7 @@ container.addEventListener('click', function(){
 
 file.addEventListener('change', function(){
     const files =  this.files
+   
 
     const audioContext = new AudioContext()
     audio1.src = URL.createObjectURL(files[0])
