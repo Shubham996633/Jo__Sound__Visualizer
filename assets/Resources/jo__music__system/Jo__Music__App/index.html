@@ -23,13 +23,13 @@
 
     <div class="music__player">
         <div class="player__img">
-            <img alt="" class="music__img" src="assets/img/music.png">
+            <div class="music__img" style="background-image: url(assets/img/music.png);"></div>
 
 
         </div>
         <div class="player__data">
             <div class="music__title">
-                <h1>Song Title</h1>
+                <h1 class = "music__title-name" >Song Title</h1>
             </div>
             <div class="song__details">
                 <div class="song__details_artist">
@@ -58,7 +58,9 @@
             
             <div class="progress-area">
                 <div class="progress-bar">
-                  <audio id="main-audio" src=""></audio>
+                    <audio id="main-audio" class="audio">
+                        <source src="" id="src" />
+                      </audio>
                 </div>
             </div>
             <span class="max-duration">0:00</span>
@@ -67,8 +69,8 @@
             
 
             <div class="controls">
-                <i class="ri-play-line"></i>
-                <i class="ri-repeat-fill"></i>
+                <i class="ri-play-line playeraction" id = 'softplay'></i>
+                <i class="ri-repeat-fill faded repeatsong"></i>
                 <i class="ri-volume-up-line"></i>
 
                 <div class="song-file" id="songDropArea">
@@ -89,6 +91,11 @@
 
                 <!-- JavaScript -->
 
+                <!-- JSMediaTags` -->
+
+
+    <script src="assets/js/jsmediatags.min.js"></script>
+    <script src="assets/js/jsmediatags.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

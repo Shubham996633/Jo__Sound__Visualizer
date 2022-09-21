@@ -46,7 +46,7 @@ h4{
     display: flex;
 }
 .progress-area{
-  height: 3px;
+  height: 6px;
   width: 96%;
   
   border-radius: 50px;
@@ -67,17 +67,31 @@ h4{
   width: 21px;
   border-radius: 50%;
   top: 50%;
-  right: -5px;
+  right: -6px;
   z-index: 2;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-50%);
   background: inherit;
   transition: opacity 0.2s ease;
-}
-.progress-area:hover .progress-bar::before{
   opacity: 1;
   pointer-events: auto;
+
+
+}
+.progress-area:active .progress-bar::before{
+
+
+ 
+}
+
+.faded{
+  opacity: .72;
+}
+.faded__active{
+  opacity: 1;
+  font-weight: 500;
+  transform: scale(1.1);
 }
 .progress-area .song-timer{
   margin-top: 2px;
@@ -115,8 +129,8 @@ h4{
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(var(--white) 0%, var(--darkwhite) 100%);
-  box-shadow: 0px 0px 5px var(--pink);
+  background: linear-gradient(white 0%, rgba(255,255,255, 0.6) 100%);
+  box-shadow: white;
 }
 .play-pause::before{
   position: absolute;
@@ -124,7 +138,7 @@ h4{
   height: 43px;
   width: 43px;
   border-radius: inherit;
-  background: linear-gradient(var(--pink) 0%, var(--violet) 100%);
+  background: white;
 }
 .play-pause i{
   height: 43px;
@@ -140,7 +154,7 @@ h4{
 
 
 .song-file{
-  width: 60%;
+  width: 75%;
   height: 36px;
   display: flex;
  
@@ -149,10 +163,10 @@ h4{
 label{
   cursor: pointer;
   border-radius: 3px;
-  background-color: white;
+  background-color: rgba(48, 46, 46, 0.9);
   font-size: 1rem;
   font-weight: 700;
-  color: black;
+  color: white;
   padding-bottom: 1rem;
   opacity: .9;
   padding-top: 6px;
@@ -164,9 +178,20 @@ label{
   z-index: -1;
 }
 .fullscreen__mode{
-  margin-left: 16%;
+  margin-left: 1%;
 }
 i:active,
 label:active{
   transform: scale(.9);
+  opacity: .6;
+}
+
+.music__img{
+  width: 108px;
+  height: 107px;
+  object-fit: cover;
+  max-width: 100%;
+        max-height: 100%;
+        background-size: 108px 107px;
+
 }
