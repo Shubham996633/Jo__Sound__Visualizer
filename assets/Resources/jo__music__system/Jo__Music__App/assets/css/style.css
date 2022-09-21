@@ -167,6 +167,6 @@ label{
   margin-left: 16%;
 }
 i:active,
-label:hover{
+label:active{
   transform: scale(.9);
 }
