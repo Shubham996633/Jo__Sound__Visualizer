@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jo__Music__App</title>
+
+                <!-- Remixcons -->
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+                <!-- CSS -->
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="canvas">
+        <canvas id="canvas1"></canvas>
+        
+    </div>
+
+    <div class="music__player">
+        <div class="player__img">
+            <img alt="" class="music__img" src="assets/img/music.png">
+
+
+        </div>
+        <div class="player__data">
+            <div class="music__title">
+                <h1>Song Title</h1>
+            </div>
+            <div class="song__details">
+                <div class="song__details_artist">
+                    <h4 class = "song__details_artist-name">Album Artist Name</h4>
+                </div>
+                <div class="song__details_singer">
+                    <h4  class="song__details_singer-name">Album Singer Name</h4>
+                </div>
+                <div class="song__details_genre">
+                    <h4  class="song__details_genre-name">Album Genre Name</h4>
+                </div>
+                <div class="song__details_date">
+                    <h4  class="song__details_date-released_year">Album Released year</h4>
+                </div><div class="song__album">
+                    <h4  class="song__album-name">Album name</h3>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+        <div class="main__player">
+            <div class="song__player">
+            <span class="current-time">0:00</span>
+            
+            <div class="progress-area">
+                <div class="progress-bar">
+                  <audio id="main-audio" src=""></audio>
+                </div>
+            </div>
+            <span class="max-duration">0:00</span>
+            </div>
+
+            
+
+            <div class="controls">
+                <i class="ri-play-line"></i>
+                <i class="ri-repeat-fill"></i>
+                <i class="ri-volume-up-line"></i>
+
+                <div class="song-file" id="songDropArea">
+                    <label for="songUpload"> Upload Song</label>
+                    <input type="file" id="songUpload" accept=".mp3, .wav">
+                </div>
+
+
+                <i class="ri-fullscreen-line fullscreen__mode"></i>
+                
+            </div>
+
+           
+
+        </div>
+    
+
+
+                <!-- JavaScript -->
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
