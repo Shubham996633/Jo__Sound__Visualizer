@@ -8,6 +8,7 @@ const playPauseBtn = document.getElementById('softplay')
 
 songUpload.addEventListener("change", (event) => {
     var files = event.target.files;
+    
     const validator = document.getElementById("src").getAttribute.length
     console.log(validator)
     if(event.target.files.length === 0){
@@ -15,6 +16,8 @@ songUpload.addEventListener("change", (event) => {
     }else{
         pauseMusic()
         progressBar.style.width = `0%`;
+        volumePopup.classList.remove('faded__volume')
+        volumePopupvalue.classList.remove('faded__volume')
 
         document.getElementById("src").setAttribute("src", URL.createObjectURL(files[0]));
         document.querySelector(".audio").load();
@@ -136,7 +139,18 @@ audio1.addEventListener('ended', ()=> {
     if(repeatBtn.classList.contains('faded__active')){
         audio1.currentTime = 0
         playMusic()
+    }else{
+        if(softplay.classList.contains('paused')){
+            softplay.classList.remove("paused");
+            softplay.classList.add('ri-play-line');
+            softplay.classList.remove('ri-pause-fill');
+        }
+
+        progressBar.style.width = `0%`;
     }
+
+    
+
 })
 
 
@@ -194,6 +208,7 @@ input.addEventListener('change', (event) => {
                     }else{
                     }
                     document.querySelector(".music__title-name").textContent = tag.tags.title;
+                    document.title = tag.tags.title;
                     document.querySelector(".song__album-name").textContent = tag.tags.album;
                     document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
                     document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
@@ -218,10 +233,12 @@ input.addEventListener('change', (event) => {
                     }else{
                         console.log('Some data not founded')
                         
-                        document.querySelector(".song__album-name").textContent = ' '
+                        
                     }
                     document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
                     document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
+                    document.title = file.name.slice(0, -4);
+
                    
                     document.querySelector(".song__album-name").textContent = 'Unknown Album'
                     document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
@@ -250,23 +267,63 @@ function showSliderValue() {
   rangeBullet.style.left = (bulletPosition * 150) + "px";
 }
 const volumeBtn = document.querySelector('.volumeTrack')
-const volumePopup = document.querySelector('.range-slider')
+const volumePopup = document.querySelector('.rs-range')
+const volumePopupvalue = document.querySelector('.rs-label')
+
 function showvolume(){
     volumeBtn.classList.add('unactive')
     volumePopup.style.transform = 'scale(1)'
+    console.log('show')
+   
 }
 
 function hidevolume(){
     volumeBtn.classList.remove('unactive')
     volumePopup.style.transform = 'scale(0)'
+    console.log('hide')
 }
 
-volumeBtn.addEventListener('click', ()=> {
-    console.log(volumeBtn.classList.contains('active'))
+volumeBtn.addEventListener("click", ()=> {
     if(volumeBtn.classList.contains('unactive')){
-        showvolume()
+        volumeBtn.classList.remove('unactive')
+        volumePopup.classList.remove('faded__volume')
+        volumePopupvalue.classList.remove('faded__volume')
+
+        
+
+        
     }else{
-        hidevolume()
+        volumeBtn.classList.add('unactive')
+        volumePopup.classList.add('faded__volume')
+        volumePopupvalue.classList.add('faded__volume')
+
+
+
     }
 
+  
+   
+    
+
 })
+
+
+
+
+
+
+document.addEventListener('click', function(e){
+    let inside = (e.target.closest('#range-slide'));
+    if(document.querySelector('.volumeTrack').classList.contains('unactive')){
+        if(inside){
+            console.log('hi')
+            console.log(!inside)
+            
+           
+            
+
+          
+        }
+
+    }
+  });
