@@ -8,12 +8,23 @@ const playPauseBtn = document.getElementById('softplay')
 
 songUpload.addEventListener("change", (event) => {
     var files = event.target.files;
-    document.getElementById("src").setAttribute("src", URL.createObjectURL(files[0]));
-    document.querySelector(".audio").load();
-    console.log(files)
-    
+    const validator = document.getElementById("src").getAttribute.length
+    console.log(validator)
+    if(event.target.files.length === 0){
+        console.log('kya bein vishedi')
+    }else{
+        pauseMusic()
+        progressBar.style.width = `0%`;
+
+        document.getElementById("src").setAttribute("src", URL.createObjectURL(files[0]));
+        document.querySelector(".audio").load();
+        console.log(files)
+        
+
+    }
 
 })
+
 
 isMusicPaused = true;
 
@@ -39,8 +50,15 @@ function pauseMusic(){
   
 
 playPauseBtn.addEventListener("click", ()=>{
-    const isMusicPlay = softplay.classList.contains("paused");
-    isMusicPlay ? pauseMusic() : playMusic();
+    const checker = document.getElementById("src").getAttribute('src').length
+    
+    if(checker === 0){
+        console.log('Select a File Please')
+    }else{
+        
+        const isMusicPlay = softplay.classList.contains("paused");
+        isMusicPlay ? pauseMusic() : playMusic();
+    }
     
   });
   
@@ -75,10 +93,16 @@ audio1.addEventListener("timeupdate", (e)=>{
 
 
 progressArea.addEventListener("click", (e)=>{
-    let progressWidth = progressArea.clientWidth;
-    let clickedOffsetX = e.offsetX; 
-    let songDuration = audio1.duration; 
-    audio1.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+    const checker = document.getElementById("src").getAttribute('src').length
+    if(checker === 0){
+        console.log('Select A File Please')
+    }else{
+
+        let progressWidth = progressArea.clientWidth;
+        let clickedOffsetX = e.offsetX; 
+        let songDuration = audio1.duration; 
+        audio1.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+    }
     
     
 });
@@ -97,8 +121,11 @@ const repeatBtn = document.querySelector(".repeatsong");
 repeatBtn.addEventListener('click', ()=> {
     if(repeatBtn.classList.contains('faded__active')){
         repeatBtn.classList.remove('faded__active')
+        repeatBtn.classList.remove('ri-repeat-one-fill')
+
     }else{
         repeatBtn.classList.add('faded__active')
+        repeatBtn.classList.add('ri-repeat-one-fill')
 
     }
 })
@@ -133,33 +160,113 @@ audio1.addEventListener('ended', ()=> {
 // })
 
 
-var input =  document.querySelector('input')
+
+var input =  document.querySelector('.uploader')
+
+
 input.addEventListener('change', (event) => {
     var file = event.target.files[0]
-    jsmediatags.read(file, {
-        onSuccess: function(tag){
 
-            try{
-                console.log(tag)
-                const data = tag.tags.picture.data
-                const format = tag.tags.picture.format
-                let base64String = ""
-                for(let i = 0; i < data.length; i++){
-                    base64String += String.fromCharCode(data[i])
+
+    if(event.target.files.length === 0){
+        console.log('kya bein vishedi')
+    }else{
+        jsmediatags.read(file, {
+            onSuccess: function(tag){
+    
+                try{
+                    console.log(tag)
+                    const data = tag.tags.picture.data
+                    const format = tag.tags.picture.format
+                    let base64String = ""
+                    for(let i = 0; i < data.length; i++){
+                        base64String += String.fromCharCode(data[i])
+                    }
+                    if(tag.tags.hasOwnProperty('picture')){
+                        if(tag.tags.picture.description === ""){
+                            document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+        
+                        }else{
+        
+                            document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
+                        }
+    
+                    }else{
+                    }
+                    document.querySelector(".music__title-name").textContent = tag.tags.title;
+                    document.querySelector(".song__album-name").textContent = tag.tags.album;
+                    document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
+                    document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
+                    document.querySelector('.song__details_genre-name').textContent = tag.tags.TCON.data
+                    document.querySelector('.song__details_date-released_year').textContent = tag.tags.TDRC.data
+    
+    
                 }
-                document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
-                document.querySelector(".music__title-name").textContent = tag.tags.album;
+                
+                catch(error){
+                    console.log(error)
+    
+                    if(tag.tags.hasOwnProperty('picture')){
+                        if(tag.tags.picture.description === ""){
+                            document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+        
+                        }else{
+        
+                            document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
+                        }
+    
+                    }else{
+                        console.log('Some data not founded')
+                        
+                        document.querySelector(".song__album-name").textContent = ' '
+                    }
+                    document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                    document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
+                   
+                    document.querySelector(".song__album-name").textContent = 'Unknown Album'
+                    document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
+                    document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
+                    document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
+                    document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
+    
+                }
+                }
+        })
 
-            }
-            
-            catch(error){
-                console.log(error)
-                document.getElementById("cover").style.backgroundImage = 'url(./assets/img/music.png)';
-                document.querySelector(".music__title-name").textContent = " ";
-
-            }
-            }
-    })
+    }
 
     
+})
+
+
+var rangeSlider = document.getElementById("rs-range-line");
+var rangeBullet = document.getElementById("rs-bullet");
+
+rangeSlider.addEventListener("input", showSliderValue, false);
+
+function showSliderValue() {
+  rangeBullet.innerHTML = rangeSlider.value;
+  var bulletPosition = (rangeSlider.value /rangeSlider.max);
+  rangeBullet.style.left = (bulletPosition * 150) + "px";
+}
+const volumeBtn = document.querySelector('.volumeTrack')
+const volumePopup = document.querySelector('.range-slider')
+function showvolume(){
+    volumeBtn.classList.add('unactive')
+    volumePopup.style.transform = 'scale(1)'
+}
+
+function hidevolume(){
+    volumeBtn.classList.remove('unactive')
+    volumePopup.style.transform = 'scale(0)'
+}
+
+volumeBtn.addEventListener('click', ()=> {
+    console.log(volumeBtn.classList.contains('active'))
+    if(volumeBtn.classList.contains('unactive')){
+        showvolume()
+    }else{
+        hidevolume()
+    }
+
 })

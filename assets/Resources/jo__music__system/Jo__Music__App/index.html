@@ -12,6 +12,7 @@
 
                 <!-- CSS -->
 
+
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -71,11 +72,24 @@
             <div class="controls">
                 <i class="ri-play-line playeraction" id = 'softplay'></i>
                 <i class="ri-repeat-fill faded repeatsong"></i>
-                <i class="ri-volume-up-line"></i>
+                <!-- <div class="container"> -->
+  
+                    <span class="range-slider">
+                      <span id="rs-bullet" class="rs-label">0</span>
+                      
+                      <input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="100">
+                    </span>
+                    
+                   
+                    
+                  <!-- </div> -->
+                <i class="ri-volume-up-line volumeTrack"></i>
+                  
+               
 
                 <div class="song-file" id="songDropArea">
                     <label for="songUpload"> Upload Song</label>
-                    <input type="file" id="songUpload" accept=".mp3, .wav">
+                    <input type="file" id="songUpload" class = "uploader" accept=".mp3, .wav">
                 </div>
 
 

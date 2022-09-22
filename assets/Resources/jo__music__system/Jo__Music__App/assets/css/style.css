@@ -32,6 +32,7 @@ h4{
 }
 .player__img{
     margin-right: 1rem;
+    margin-left: .72rem;
 }
 
 .player__data{
@@ -171,7 +172,12 @@ label{
   opacity: .9;
   padding-top: 6px;
 }
-
+.volumeTrack{
+  margin-left: -14rem;
+}
+.volumeTrack:active{
+  transform: scale(.9);
+}
 #songUpload{
   opacity: 0;
   position: absolute;
@@ -187,11 +193,118 @@ label:active{
 }
 
 .music__img{
-  width: 108px;
+  width: 111px;
   height: 107px;
   object-fit: cover;
   max-width: 100%;
         max-height: 100%;
-        background-size: 108px 107px;
+        background-size: 111px 107px;
 
 }
+.music__title-name{
+  margin-top: 12px;
+}
+.music__player{
+  margin-top: -15px;
+}
+
+h1{
+  font-size: 1.8em;
+}
+.container{
+  z-index: 10;
+  background-color: white;
+  margin-top: 5rem;
+ 
+}
+
+.range-slider {
+  margin-top: -9rem;
+  transform: scale(0);
+ 
+
+}
+.rs-range {
+  margin-top: 29px;
+  width: 172px;
+  height: 3px;
+  background: #1d3f65;
+  z-index: 100;
+  
+  -webkit-appearance: none;
+}
+.rs-range:focus {
+  outline: none;
+}
+.rs-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1px;
+  
+  cursor: pointer;
+  box-shadow: none;
+  background: #1d3f65;;
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+.rs-range::-moz-range-track {
+  width: 100%;
+  height: 1px;
+  cursor: pointer;
+  box-shadow: none;
+  background: #1d3f65;;
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+.rs-range::-webkit-slider-thumb {
+  box-shadow: none;
+  border-radius: 50%;
+  border: 0px solid #1d3f65;;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+  height: 22px;
+  width: 22px;
+  border-radius: 22px;
+  background: #1d3f65;;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -10px;
+}
+.rs-range::-webkit-slider-thumb:active{
+  background-color: #4976aa;
+}
+.rs-range::-moz-range-thumb {
+  box-shadow: none;
+  border: 0px solid #1d3f65;;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+  height: 42px;
+  width: 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -20px;
+}
+.rs-range::-moz-focus-outer {
+  border: 0;
+}
+.rs-label {
+  position: relative;
+  transform-origin: center center;
+  display: block;
+  width: 42px;
+  height: 39px;
+  background: rgba(48, 46, 46, 0.9);
+  border-radius: 9%;
+  line-height: 30px;
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+  border: 2px solid black;
+  margin-top: 20px;
+  left: attr(value);
+  color: #fff;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 21px;
+}
+
