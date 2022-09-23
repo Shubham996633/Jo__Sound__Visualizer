@@ -11,7 +11,22 @@ songUpload.addEventListener("change", (event) => {
     
     const validator = document.getElementById("src").getAttribute.length
     if(event.target.files.length === 0){
-        console.log('kya bein vishedi')
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'info',
+            title: 'File Not Uploaded'
+          })
         
     }else{
         pauseMusic()
@@ -73,11 +88,11 @@ playPauseBtn.addEventListener("click", ()=>{
             icon: 'info',
             title: 'Please Select File'
           })
-    }else{
-        
-        const isMusicPlay = softplay.classList.contains("paused");
-        isMusicPlay ? pauseMusic() : playMusic();
-    }
+        }else{
+            
+            const isMusicPlay = softplay.classList.contains("paused");
+            isMusicPlay ? pauseMusic() : playMusic();
+        }
     
   });
   
@@ -164,6 +179,52 @@ repeatBtn.addEventListener('click', ()=> {
 
     }
 })
+
+window.addEventListener('keydown', (e)=> {
+    
+    if(e.key === 'r' || e.key === 'R'){
+        if(repeatBtn.classList.contains('faded__active')){
+            repeatBtn.classList.remove('faded__active')
+            repeatBtn.classList.remove('ri-repeat-one-fill')
+    
+        }else{
+            repeatBtn.classList.add('faded__active')
+            repeatBtn.classList.add('ri-repeat-one-fill')
+    
+        }
+
+    }else if(e.key === 'l' || e.key === 'L'){
+        const checker = document.getElementById("src").getAttribute('src').length
+    
+    if(checker === 0){
+        
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'info',
+            title: 'Please Select File'
+          })
+        }else{
+            
+            const isMusicPlay = softplay.classList.contains("paused");
+            isMusicPlay ? pauseMusic() : playMusic();
+        }
+        }else if (e.key === 'u' || e.key === 'U'){
+
+            
+        }
+
+})
 let musicIndex = Math.floor((Math.random() * audio1.length) + 1);
 
 audio1.addEventListener('ended', ()=> {
@@ -184,7 +245,7 @@ audio1.addEventListener('ended', ()=> {
     
 
 })
-
+console.log(audio1.pause())
 
 
 // window.addEventListener('keydown', e => {
@@ -536,8 +597,5 @@ window.addEventListener('load', function(){
 })
 
 
-function initialize() {
-    document.body.onfocus = checkIt;
-    console.log('initializing');
-}
+
 
