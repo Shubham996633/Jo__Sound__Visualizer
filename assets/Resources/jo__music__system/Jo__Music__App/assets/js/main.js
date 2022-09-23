@@ -53,6 +53,8 @@ function playMusic(){
     softplay.classList.remove('ri-play-line');
     softplay.classList.add('ri-pause-fill');
     audio1.play();
+    visualizer()
+
    
 }
   
@@ -193,7 +195,7 @@ window.addEventListener('keydown', (e)=> {
     
         }
 
-    }else if(e.key === 'l' || e.key === 'L'){
+    }else if(e.key === 'p' || e.key === 'P'){
         const checker = document.getElementById("src").getAttribute('src').length
     
     if(checker === 0){
@@ -245,7 +247,6 @@ audio1.addEventListener('ended', ()=> {
     
 
 })
-console.log(audio1.pause())
 
 
 // window.addEventListener('keydown', e => {
@@ -599,3 +600,73 @@ window.addEventListener('load', function(){
 
 
 
+const canvas = document.getElementById('canvas1')
+const musicPlayer = document.querySelector('.music__container')
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+let marginNet = window.innerHeight * 0.34
+musicPlayer.style.marginTop = `${-marginNet}px`
+
+function resizeFn(){
+    canvas.width = window.innerWidth
+
+    canvas.height = window.innerHeight
+    let marginNet = window.innerHeight * 0.34
+    musicPlayer.style.marginTop = `${-marginNet}px`
+}
+
+window.addEventListener('resize', resizeFn)
+const ctx = canvas.getContext('2d')
+let audioSource
+let analyser
+
+function visualizer(){
+    const files =  this.files
+
+    const audioContext = new AudioContext()
+    // audio1.src = URL.createObjectURL(files[0])
+    
+    if(!audioSource){
+        audioSource = audioContext.createMediaElementSource(audio1);
+        analyser = audioContext.createAnalyser();
+        audioSource.connect(analyser);
+        analyser.connect(audioContext.destination);
+    }
+    analyser.fftSize = 2048
+    const bufferLength = analyser.frequencyBinCount
+    const dataArray = new Uint8Array(bufferLength)
+
+    const barWidth = 15
+    let barHeight
+    let x
+
+    function animate(){
+        x = 0
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        analyser.getByteFrequencyData(dataArray)
+        drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray)
+        requestAnimationFrame(animate)
+    }
+    animate()
+}
+
+
+function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
+    
+    for(let i = 0; i < bufferLength; i++){
+        barHeight = dataArray[i] * 2.5
+        ctx.save()
+        ctx.translate(canvas.width/2, canvas.height/2)
+        ctx.rotate(i * 4.184)
+        const hue = 120 + i * .3
+        ctx.fillStyle = 'hsl(' + hue + ', 100%,50%)'
+        ctx.beginPath()
+        ctx.arc(10, barHeight/2, barHeight/2, 0, Math.PI / 4)
+
+        ctx.fill()
+        ctx.stroke()
+        x += barWidth
+        ctx.restore()
+    }
+
+}
