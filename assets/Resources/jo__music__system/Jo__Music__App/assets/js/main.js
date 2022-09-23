@@ -670,3 +670,69 @@ function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
     }
 
 }
+
+
+const fullscreenMode = document.querySelector('.fullscreen__mode')
+function requestFullScreen(element) {
+    element = document.body
+    // Supports most browsers and their versions.
+    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+    if (requestMethod) { // Native full screen.
+        requestMethod.call(element);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+}
+
+
+
+function cancelFullScreen(element) {
+    element = document
+    // Supports most browsers and their versions.
+    var requestMethod = element.exitFullscreen || element.webkitExitFullscreen || element.mozCancelFullScreen || element.msExitFullscreen;
+
+    if (requestMethod) { // Native full screen.
+        requestMethod.call(element);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+}
+
+// var elem = document.body; // Make the body go full screen.
+fullscreenMode.addEventListener('click', ()=> {
+       
+    fullscreenChecker()
+
+    
+})
+
+function fullscreenChecker(){
+    if(!fullscreenMode.classList.contains('fullscreen__active')){
+        fullscreenMode.classList.add('fullscreen__active')
+        fullscreenMode.classList.remove('ri-fullscreen-line')
+        fullscreenMode.classList.add('ri-fullscreen-exit-line')
+        
+        requestFullScreen()
+
+    }else if(fullscreenMode.classList.contains('fullscreen__active')){
+        fullscreenMode.classList.remove('fullscreen__active')
+        fullscreenMode.classList.remove('ri-fullscreen-exit-line')
+        fullscreenMode.classList.add('ri-fullscreen-line')
+        cancelFullScreen()
+
+    }
+}
+
+window.addEventListener('keydown', (e)=> {
+    console.log(e.key)
+    if(e.key === 'f' || e.key === 'F' || e.key === 'F11' || e.key === 'Escape'){
+        fullscreenChecker()
+    }
+})

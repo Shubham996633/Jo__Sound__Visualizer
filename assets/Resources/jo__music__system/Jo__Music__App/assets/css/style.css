@@ -392,3 +392,12 @@ h1{
 body{
   overflow: hidden;
 }
+
+.ri-fullscreen-line:hover{
+  transform: scale(.96);
+  opacity: .81;
+}
+.ri-fullscreen-line:active{
+  transform: scale(.81);
+  opacity: .72;
+}
