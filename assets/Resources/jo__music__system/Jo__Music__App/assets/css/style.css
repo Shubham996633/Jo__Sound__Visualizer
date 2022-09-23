@@ -11,7 +11,7 @@ body{
 }
 
 #canvas1{
-    height: 400px;
+    height: 432px;
     width: 100%;
 }
 
@@ -81,7 +81,8 @@ h4{
 
 }
 .progress-area:active .progress-bar::before{
-
+  height: 27px;
+  width: 27px;
 
  
 }
@@ -116,7 +117,7 @@ h4{
 }
 .controls i{
   font-size: 28px;
-  user-select: none;
+  -webkit-user-select: none;
   background: white;
   background-clip: text;
   -webkit-background-clip: text;
@@ -176,14 +177,36 @@ label{
 }
 .volumeTrack{
   margin-left: -14rem;
+  
 }
 .volumeTrack:active{
-  transform: scale(.9);
+  transform: scale(.81);
+  opacity: .6;
+}
+
+.playeraction:hover,
+.volumeTrack:hover{
+  opacity: .6;
+  
+}
+
+.playeraction:hover{
+  transform: scale(.98);
+}
+
+
+.playeraction:active{
+  transform: scale(.81);
 }
 #songUpload{
   opacity: 0;
   position: absolute;
   z-index: -1;
+}
+
+#songUpload:active,
+.uploader:active{
+  transform: scale(.9);
 }
 .fullscreen__mode{
   margin-left: 1%;
@@ -226,6 +249,7 @@ h1{
 
 .range-slider {
   margin-top: -9rem;
+ 
 }
 
 
@@ -233,7 +257,7 @@ h1{
   margin-top: 29px;
   width: 172px;
   height: 3px;
-  background: #1d3f65;
+  background: #0775f1;
   
   -webkit-appearance: none;
 }
@@ -242,11 +266,11 @@ h1{
 }
 .rs-range::-webkit-slider-runnable-track {
   width: 100%;
-  height: 1px;
+  height: 3px;
   
   cursor: pointer;
   box-shadow: none;
-  background: #1d3f65;;
+  background: #0464d1;;
   border-radius: 0px;
   border: 0px solid #010101;
 }
@@ -255,29 +279,30 @@ h1{
   height: 1px;
   cursor: pointer;
   box-shadow: none;
-  background: #1d3f65;;
+  background: #1c68be;;
   border-radius: 0px;
   border: 0px solid #010101;
 }
 .rs-range::-webkit-slider-thumb {
   box-shadow: none;
   border-radius: 50%;
-  border: 0px solid #1d3f65;;
+  border: 0px solid #1874df;;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
   height: 22px;
   width: 22px;
   border-radius: 22px;
-  background: #1d3f65;;
+  background: #245a97;;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -10px;
 }
 .rs-range::-webkit-slider-thumb:active{
   background-color: #4976aa;
+  
 }
 .rs-range::-moz-range-thumb {
   box-shadow: none;
-  border: 0px solid #1d3f65;;
+  border: 0px solid #255fa1;;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
   height: 42px;
   width: 22px;
@@ -286,6 +311,9 @@ h1{
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -20px;
+}
+.rs-range::-moz-range-thumb:active{
+ 
 }
 .rs-range::-moz-focus-outer {
   border: 0;
@@ -296,7 +324,7 @@ h1{
   display: block;
   width: 42px;
   height: 39px;
-  background: rgba(48, 46, 46, 0.9);
+  background: black;
   border-radius: 9%;
   line-height: 30px;
   text-align: center;
@@ -310,5 +338,32 @@ h1{
   font-weight: normal;
   line-height: normal;
   font-size: 21px;
+  font-weight: 666;
 }
 
+.swal2-popup.swal2-toast .swal2-title {
+  margin: .5em 1em;
+  padding: 0;
+  font-size: 1em;
+  text-align: initial;
+  color: white;
+
+}
+.swal2-container.swal2-top-end>.swal2-popup, .swal2-container.swal2-top-right>.swal2-popup {
+  grid-column: 3;
+  align-self: start;
+  justify-self: end;
+  background-color: rgb(39, 38, 38);
+}
+
+.swal2-timer-progress-bar {
+  width: 100%;
+  height: .25em;
+  background: black;
+}
+
+.swal2-timer-progress-bar {
+  width: 100%;
+  height: .25em;
+  background: black;
+}

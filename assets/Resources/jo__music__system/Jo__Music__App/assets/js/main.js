@@ -10,9 +10,9 @@ songUpload.addEventListener("change", (event) => {
     var files = event.target.files;
     
     const validator = document.getElementById("src").getAttribute.length
-    console.log(validator)
     if(event.target.files.length === 0){
         console.log('kya bein vishedi')
+        
     }else{
         pauseMusic()
         progressBar.style.width = `0%`;
@@ -21,7 +21,6 @@ songUpload.addEventListener("change", (event) => {
 
         document.getElementById("src").setAttribute("src", URL.createObjectURL(files[0]));
         document.querySelector(".audio").load();
-        console.log(files)
         
 
     }
@@ -29,8 +28,9 @@ songUpload.addEventListener("change", (event) => {
 })
 
 
-isMusicPaused = true;
 
+
+isMusicPaused = true;
 
 //play music function
 function playMusic(){
@@ -56,7 +56,23 @@ playPauseBtn.addEventListener("click", ()=>{
     const checker = document.getElementById("src").getAttribute('src').length
     
     if(checker === 0){
-        console.log('Select a File Please')
+        
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'info',
+            title: 'Please Select File'
+          })
     }else{
         
         const isMusicPlay = softplay.classList.contains("paused");
@@ -98,7 +114,23 @@ audio1.addEventListener("timeupdate", (e)=>{
 progressArea.addEventListener("click", (e)=>{
     const checker = document.getElementById("src").getAttribute('src').length
     if(checker === 0){
-        console.log('Select A File Please')
+       
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'info',
+            title: 'Please Select File'
+          })
     }else{
 
         let progressWidth = progressArea.clientWidth;
@@ -164,7 +196,7 @@ audio1.addEventListener('ended', ()=> {
 // })
 
 // window.addEventListener('keyup', e=> {
-//     console.log(e.key)
+//     
 //     if(e.key = 'MediaPlayPause'){
 //         const isMusicPlay = softplay.classList.contains("paused");
 //         //if isPlayMusic is true then call pauseMusic else call playMusic
@@ -183,7 +215,23 @@ input.addEventListener('change', (event) => {
 
 
     if(event.target.files.length === 0){
-        console.log('kya bein vishedi')
+        
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'info',
+            title: 'File Not Uploaded'
+          })
     }else{
         jsmediatags.read(file, {
             onSuccess: function(tag){
@@ -199,10 +247,17 @@ input.addEventListener('change', (event) => {
                     if(tag.tags.hasOwnProperty('picture')){
                         if(tag.tags.picture.description === ""){
                             document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+
+                            const faviconLink = document.querySelector('#faviconImage');
+
+                            faviconLink.href = './assets/img/music.png';
         
                         }else{
         
                             document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
+                            const faviconLink = document.querySelector('#faviconImage');
+
+                            faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
                         }
     
                     }else{
@@ -224,10 +279,16 @@ input.addEventListener('change', (event) => {
                     if(tag.tags.hasOwnProperty('picture')){
                         if(tag.tags.picture.description === ""){
                             document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                            const faviconLink = document.querySelector('#faviconImage');
+
+                            faviconLink.href = './assets/img/music.png';
         
                         }else{
         
                             document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
+                            const faviconLink = document.querySelector('#faviconImage');
+
+                            faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
                         }
     
                     }else{
@@ -236,6 +297,9 @@ input.addEventListener('change', (event) => {
                         
                     }
                     document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                    const faviconLink = document.querySelector('#faviconImage');
+
+                    faviconLink.href = './assets/img/music.png';
                     document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
                     document.title = file.name.slice(0, -4);
 
@@ -262,25 +326,88 @@ var rangeBullet = document.getElementById("rs-bullet");
 rangeSlider.addEventListener("input", showSliderValue, false);
 
 function showSliderValue() {
+   
   rangeBullet.innerHTML = rangeSlider.value;
   var bulletPosition = (rangeSlider.value /rangeSlider.max);
   rangeBullet.style.left = (bulletPosition * 150) + "px";
-}
-const volumeBtn = document.querySelector('.volumeTrack')
-const volumePopup = document.querySelector('.rs-range')
-const volumePopupvalue = document.querySelector('.rs-label')
+ 
+   if(volumePopupvalue.textContent === '0'){
+        document.querySelector('.volumeTrack').classList.remove('ri-volume-up-line')
+        document.querySelector('.volumeTrack').classList.remove('ri-volume-down-line')
 
-function showvolume(){
-    volumeBtn.classList.add('unactive')
-    volumePopup.style.transform = 'scale(1)'
-    console.log('show')
-   
+        document.querySelector('.volumeTrack').classList.add('ri-volume-mute-line')
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'info',
+            title: 'Volume Got Muted'
+          })
+
+        changeVolume()
+
+        
+
+    }else if((parseInt(volumePopupvalue.textContent) <= 48) && (parseInt(volumePopupvalue.textContent) >= -1)){
+        document.querySelector('.volumeTrack').classList.remove('ri-volume-mute-line')
+        document.querySelector('.volumeTrack').classList.remove('ri-volume-up-line')
+        document.querySelector('.volumeTrack').classList.add('ri-volume-down-line')
+        changeVolume()
+        
+    }else if(volumePopupvalue.textContent === '100'){
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'info',
+            title: 'Volume Got Maximum '
+          })
+        changeVolume()
+
+    }else{
+       
+            document.querySelector('.volumeTrack').classList.remove('ri-volume-mute-line')
+            document.querySelector('.volumeTrack').classList.remove('ri-volume-down-line')
+            
+            document.querySelector('.volumeTrack').classList.add('ri-volume-up-line')
+            changeVolume()
+            
+    }
+    }
+    const volumeBtn = document.querySelector('.volumeTrack')
+    const volumePopup = document.querySelector('.rs-range')
+    const volumePopupvalue = document.querySelector('.rs-label')
+    
+    function showvolume(){
+        volumeBtn.classList.add('unactive')
+        volumePopup.style.transform = 'scale(1)'
+       
+     
 }
 
 function hidevolume(){
     volumeBtn.classList.remove('unactive')
     volumePopup.style.transform = 'scale(0)'
-    console.log('hide')
+   
 }
 
 volumeBtn.addEventListener("click", ()=> {
@@ -288,6 +415,9 @@ volumeBtn.addEventListener("click", ()=> {
         volumeBtn.classList.remove('unactive')
         volumePopup.classList.remove('faded__volume')
         volumePopupvalue.classList.remove('faded__volume')
+        volumeBtn.style.transform = 'scale(1)'
+        volumeBtn.style.opacity = '1'
+
 
         
 
@@ -296,6 +426,9 @@ volumeBtn.addEventListener("click", ()=> {
         volumeBtn.classList.add('unactive')
         volumePopup.classList.add('faded__volume')
         volumePopupvalue.classList.add('faded__volume')
+        volumeBtn.style.transform = 'scale(.81)'
+        volumeBtn.style.opacity = '.6'
+
 
 
 
@@ -314,12 +447,16 @@ volumeBtn.addEventListener("click", ()=> {
 
 document.addEventListener('click', function(e){
     let inside = (e.target.closest('#range-slide'));
-    if(document.querySelector('.volumeTrack').classList.contains('unactive')){
-        if(inside){
-            console.log('hi')
-            console.log(!inside)
+    if(document.querySelector('.rs-label').classList.contains('faded__volume')){
+        if(!inside){
+            volumeBtn.classList.remove('unactive')
+            volumePopup.classList.remove('faded__volume')
+            volumePopupvalue.classList.remove('faded__volume')
+            volumeBtn.style.transform = 'scale(1)'
+            volumeBtn.style.opacity = '1'
+
             
-           
+        
             
 
           
@@ -327,3 +464,80 @@ document.addEventListener('click', function(e){
 
     }
   });
+
+
+const volumeSlider = document.querySelector('.volume-slider')
+volumeSlider.addEventListener('click', changeVolume)
+
+
+function changeVolume(){
+    let volumeValueChange = volumePopupvalue.textContent
+    
+    audio1.volume = volumeValueChange / 100
+   
+}
+
+volumeSlider.addEventListener('change', changeVolume)
+volumeSlider.addEventListener('drag', changeVolume)
+
+
+function changeVolume(){
+    let volumeValueChange = volumePopupvalue.textContent
+    audio1.volume = volumeValueChange / 100
+}
+
+window.addEventListener('keydown', e=> {
+    
+    if(e.key === 'ArrowUp'){
+        let volumePrevious = (volumePopupvalue.textContent)
+        let volumeIncrese = parseInt(volumePrevious)+1
+        if(volumeIncrese <= 100){
+            rangeSlider.value = volumeIncrese
+            var bulletPosition = (rangeSlider.value /rangeSlider.max);
+            rangeBullet.style.left = (bulletPosition * 150) + "px";
+
+            volumePopupvalue.textContent = volumeIncrese.toString()
+            showSliderValue()
+            changeVolume()
+     
+
+        }
+         
+        
+    }else if(e.key === 'ArrowDown'){
+
+        let volumePrevious = (volumePopupvalue.textContent)
+        let volumeDecrese = parseInt(volumePrevious)-1
+        
+        if(volumeDecrese >= 0){
+
+    
+            rangeSlider.value = volumeDecrese
+            var bulletPosition = (rangeSlider.value /rangeSlider.max);
+            rangeBullet.style.left = (bulletPosition * 150) + "px";
+    
+            volumePopupvalue.textContent = volumeDecrese.toString()
+            showSliderValue()
+            changeVolume()
+            
+            
+           
+        }
+        
+        
+        
+    }
+  
+})
+
+window.addEventListener('load', function(){
+    showSliderValue()
+    changeVolume()
+})
+
+
+function initialize() {
+    document.body.onfocus = checkIt;
+    console.log('initializing');
+}
+

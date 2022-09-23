@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
                 <!-- CSS -->
-
+    <link rel="shortcut icon" href="assets/img/music.png" type="image/x-icon" id = "faviconImage">
 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -74,14 +74,14 @@
                 <i class="ri-repeat-fill faded repeatsong"></i>
   
                     <span class="range-slider" id = 'range-slide'>
-                      <span id="rs-bullet" class="rs-label">0</span>
+                      <span id="rs-bullet" class="rs-label">72</span>
                       
-                      <input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="100">
+                      <input id="rs-range-line" class="rs-range volume-slider" type="range" value="72" min="0" max="100">
                     </span>
                     
                    
                     
-                <i class="ri-volume-up-line volumeTrack"></i>
+                <i class="ri-volume-up-line volumeTrack" onclick="event.stopPropagation(); window.event.cancelBubble = true;"></i>
                   
                
 
@@ -108,6 +108,11 @@
 
     <script src="assets/js/jsmediatags.min.js"></script>
     <script src="assets/js/jsmediatags.js"></script>
+                    
+    
+                    <!-- Sweet Alert -->
+
+    <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
