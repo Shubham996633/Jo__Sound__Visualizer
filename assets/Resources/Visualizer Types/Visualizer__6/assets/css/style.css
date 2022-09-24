@@ -1,0 +1,404 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+h4{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.song__details{
+    display: flex;
+    gap: 30px;
+}
+
+.music__player{
+    display: flex;
+    margin-left: 1rem;
+   
+  
+
+}
+.player__img{
+    margin-right: 1rem;
+    margin-left: .72rem;
+}
+
+.player__data{
+    padding-top: 9px;
+    background: transparent;
+    z-index: -10;
+  
+}
+
+.main__player{
+    margin-top: 2.4rem;
+    margin-left: 1rem;
+}
+.song__player{
+    display: flex;
+}
+.progress-area{
+  height: 6px;
+  width: 96%;
+  z-index: 1000;
+  border-radius: 50px;
+  background: #f0f0f0;
+  cursor: pointer;
+}
+.progress-area .progress-bar{
+  height: inherit;
+  width: 0%;
+  position: relative;
+  border-radius: inherit;
+  background: white;
+}
+.progress-bar::before{
+  content: "";
+  position: absolute;
+  height: 21px;
+  width: 21px;
+  border-radius: 50%;
+  top: 50%;
+  right: -6px;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  background: inherit;
+  transition: opacity 0.2s ease;
+  opacity: 1;
+  pointer-events: auto;
+
+
+}
+.progress-area:active .progress-bar::before{
+  height: 27px;
+  width: 27px;
+
+ 
+}
+
+.faded{
+  opacity: .72;
+}
+.faded__active{
+  opacity: 1;
+  font-weight: 500;
+  transform: scale(1.1);
+}
+
+
+.progress-area .song-timer{
+  margin-top: 2px;
+}
+.song__player span{
+  font-size: 15px;
+  color: var(--lightblack);
+  margin-top: -9px;
+  margin-right: 1rem;
+}
+.max-duration{
+    margin-left: 1rem;
+}
+.controls{
+  margin-left: 10px;
+  margin-top: 21px;
+  display: flex;
+  gap: 3rem;
+}
+.controls i{
+  font-size: 28px;
+  -webkit-user-select: none;
+  background: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.controls .play-pause{
+  height: 54px;
+  width: 54px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(white 0%, rgba(255,255,255, 0.6) 100%);
+  box-shadow: white;
+}
+.play-pause::before{
+  position: absolute;
+  content: "";
+  height: 43px;
+  width: 43px;
+  border-radius: inherit;
+  background: white;
+}
+.play-pause i{
+  height: 43px;
+  width: 43px;
+  line-height: 43px;
+  text-align: center;
+  background: inherit;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+}
+
+
+.song-file{
+  width: 75%;
+  height: 36px;
+  display: flex;
+ 
+}
+
+label{
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: rgba(48, 46, 46, 0.9);
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  padding-bottom: 1rem;
+  opacity: .9;
+  padding-top: 6px;
+}
+.volumeTrack{
+  margin-left: -14rem;
+  
+}
+.volumeTrack:active{
+  transform: scale(.81);
+  opacity: .6;
+}
+
+.playeraction:hover,
+.volumeTrack:hover{
+  opacity: .6;
+  
+}
+
+.playeraction:hover{
+  transform: scale(.98);
+}
+
+
+.playeraction:active{
+  transform: scale(.81);
+}
+#songUpload{
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+#songUpload:active,
+.uploader:active{
+  transform: scale(.9);
+}
+.fullscreen__mode{
+  margin-left: 1%;
+}
+i:active,
+label:active{
+  transform: scale(.9);
+  opacity: .6;
+}
+
+.music__img{
+  width: 111px;
+  height: 108px;
+  object-fit: cover;
+  max-width: 100%;
+        max-height: 100%;
+        background-size: 111px 108px;
+
+}
+.music__title-name{
+  margin-top: 12px;
+}
+.music__player{
+  margin-top: -15px;
+}
+
+h1{
+  font-size: 1.8em;
+}
+
+.rs-label,
+.rs-range{
+  transform: scale(0);
+}
+.faded__volume{
+  transform: scale(1);
+  z-index: 100;
+
+}
+
+.range-slider {
+  margin-top: -9rem;
+ 
+}
+
+
+.rs-range {
+  margin-top: 29px;
+  width: 172px;
+  height: 3px;
+  background: #0775f1;
+  
+  -webkit-appearance: none;
+}
+.rs-range:focus {
+  outline: none;
+}
+.rs-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  
+  cursor: pointer;
+  box-shadow: none;
+  background: #0464d1;;
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+.rs-range::-moz-range-track {
+  width: 100%;
+  height: 1px;
+  cursor: pointer;
+  box-shadow: none;
+  background: #1c68be;;
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+.rs-range::-webkit-slider-thumb {
+  box-shadow: none;
+  border-radius: 50%;
+  border: 0px solid #1874df;;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+  height: 22px;
+  width: 22px;
+  border-radius: 22px;
+  background: #245a97;;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -10px;
+}
+.rs-range::-webkit-slider-thumb:active{
+  background-color: #4976aa;
+  
+}
+.rs-range::-moz-range-thumb {
+  box-shadow: none;
+  border: 0px solid #255fa1;;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+  height: 42px;
+  width: 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -20px;
+}
+.rs-range::-moz-range-thumb:active{
+ 
+}
+.rs-range::-moz-focus-outer {
+  border: 0;
+}
+.rs-label {
+  position: relative;
+  transform-origin: center center;
+  display: block;
+  width: 42px;
+  height: 39px;
+  background: black;
+  border-radius: 9%;
+  line-height: 30px;
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+  border: 2px solid black;
+  margin-top: 20px;
+  left: attr(value);
+  color: #fff;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 21px;
+  font-weight: 666;
+}
+
+.swal2-popup.swal2-toast .swal2-title {
+  margin: .5em 1em;
+  padding: 0;
+  font-size: 1em;
+  text-align: initial;
+  color: white;
+
+}
+.swal2-container.swal2-top-end>.swal2-popup, .swal2-container.swal2-top-right>.swal2-popup {
+  grid-column: 3;
+  align-self: start;
+  justify-self: end;
+  background-color: rgb(39, 38, 38);
+}
+
+.swal2-timer-progress-bar {
+  width: 100%;
+  height: .25em;
+  background: black;
+}
+
+.swal2-timer-progress-bar {
+  width: 100%;
+  height: .25em;
+  background: black;
+}
+
+
+
+.music__container{
+  z-index: 1000;
+  background: none;
+  /* margin-top: -233px; */
+}
+.music__player{
+  z-index: 100;
+}
+
+#canvas1{
+  
+  width: 100%;
+    
+  min-height: 100%;
+    
+  z-index: -100;
+  
+}
+body{
+  overflow: hidden;
+}
+
+.ri-fullscreen-line:hover{
+  transform: scale(.96);
+  opacity: .81;
+}
+.ri-fullscreen-line:active{
+  transform: scale(.81);
+  opacity: .72;
+}
+
