@@ -7,6 +7,7 @@ const softplay = document.querySelector('.playeraction')
 const playPauseBtn = document.getElementById('softplay')
 
 songUpload.addEventListener("change", (event) => {
+    fileValidation()
     var files = event.target.files;
     
     const validator = document.getElementById("src").getAttribute.length
@@ -127,7 +128,11 @@ audio1.addEventListener("timeupdate", (e)=>{
 
 })
 
-
+window.addEventListener('keydown', (e)=> {
+    console.log(e.key)
+   
+})
+ 
 progressArea.addEventListener("click", (e)=>{
     const checker = document.getElementById("src").getAttribute('src').length
     if(checker === 0){
@@ -273,6 +278,7 @@ var input =  document.querySelector('.uploader')
 
 
 input.addEventListener('change', (event) => {
+    fileValidation()
     var file = event.target.files[0]
 
 
@@ -297,83 +303,174 @@ input.addEventListener('change', (event) => {
     }else{
         jsmediatags.read(file, {
             onSuccess: function(tag){
+                console.log(tag)
+                if(tag.type === 'MP4'){
+                    console.log('its video')
+                    try{
+                        const data = tag.tags.picture.data
+                        const format = tag.tags.picture.format
+                        let base64String = ""
+                        for(let i = 0; i < data.length; i++){
+                            base64String += String.fromCharCode(data[i])
+                        }
+                        if(tag.tags.hasOwnProperty('picture')){
+                            if(tag.tags.picture.description === ""){
+                                document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
     
-                try{
-                    console.log(tag)
-                    const data = tag.tags.picture.data
-                    const format = tag.tags.picture.format
-                    let base64String = ""
-                    for(let i = 0; i < data.length; i++){
-                        base64String += String.fromCharCode(data[i])
-                    }
-                    if(tag.tags.hasOwnProperty('picture')){
-                        if(tag.tags.picture.description === ""){
-                            document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
-
-                            const faviconLink = document.querySelector('#faviconImage');
-
-                            faviconLink.href = './assets/img/music.png';
+                                const faviconLink = document.querySelector('#faviconImage');
+    
+                                faviconLink.href = './assets/img/music.png';
+            
+                            }else{
+            
+                                document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
+                                const faviconLink = document.querySelector('#faviconImage');
+    
+                                faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
+                            }
         
                         }else{
-        
-                            document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
-                            const faviconLink = document.querySelector('#faviconImage');
-
-                            faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
                         }
-    
-                    }else{
+                        document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
+                        document.title = tag.tags.title;
+                        document.querySelector(".song__album-name").textContent = tag.tags.album;
+                        document.querySelector('.song__details_artist-name').textContent = tag.tags.artist
+                        document.querySelector('.song__details_singer-name').textContent = tag.tags.artist
+                        document.querySelector('.song__details_genre-name').textContent = tag.tags.genre
+                        document.querySelector('.song__details_date-released_year').textContent = window.moment(tag.tags.year).format('YYYY')
+        
+        
                     }
-                    document.querySelector(".music__title-name").textContent = tag.tags.title;
-                    document.title = tag.tags.title;
-                    document.querySelector(".song__album-name").textContent = tag.tags.album;
-                    document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
-                    document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
-                    document.querySelector('.song__details_genre-name').textContent = tag.tags.TCON.data
-                    document.querySelector('.song__details_date-released_year').textContent = tag.tags.TDRC.data
+                    
+                    catch(error){
+                        console.log(error)
+        
+                        if(tag.tags.hasOwnProperty('picture')){
+                            if(tag.tags.picture.description === ""){
+                                document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                                const faviconLink = document.querySelector('#faviconImage');
     
+                                faviconLink.href = './assets/img/music.png';
+            
+                            }
+        
+                        }else{
+                            console.log('Some data not founded')
+                            
+                            
+                        }
+                        document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                        const faviconLink = document.querySelector('#faviconImage');
     
+                        faviconLink.href = './assets/img/music.png';
+                        document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
+                        document.title = tag.tags.title;
+                        document.querySelector(".song__album-name").textContent =  `Unknown Album`;
+                        document.querySelector('.song__details_artist-name').textContent = `Unknown Artist`
+                        document.querySelector('.song__details_singer-name').textContent = `Unknown Singer`
+                        document.querySelector('.song__details_genre-name').textContent = `Unknown Genre`
+                        document.querySelector('.song__details_date-released_year').textContent = window.moment(tag.tags.year).format('YYYY')
+                        console.log('yo')
+        
+                    }
+                }else{
+
+                    try{
+                        const data = tag.tags.picture.data
+                        const format = tag.tags.picture.format
+                        let base64String = ""
+                        for(let i = 0; i < data.length; i++){
+                            base64String += String.fromCharCode(data[i])
+                        }
+                        if(tag.tags.hasOwnProperty('picture')){
+                            if(tag.tags.picture.description === ""){
+                                document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+    
+                                const faviconLink = document.querySelector('#faviconImage');
+    
+                                faviconLink.href = './assets/img/music.png';
+            
+                            }else{
+            
+                                document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
+                                const faviconLink = document.querySelector('#faviconImage');
+    
+                                faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
+                            }
+        
+                        }else{
+                        }
+                        document.querySelector(".music__title-name").textContent = tag.tags.title;
+                        document.title = tag.tags.title;
+                        document.querySelector(".song__album-name").textContent = tag.tags.album;
+                        document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
+                        document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
+                        document.querySelector('.song__details_genre-name').textContent = tag.tags.TCON.data
+                        document.querySelector('.song__details_date-released_year').textContent = tag.tags.TDRC.data
+        
+        
+                    }
+                    
+                    catch(error){
+                        
+                        console.log(error)
+        
+                        if(tag.tags.hasOwnProperty('picture')){
+                            if(tag.tags.picture.description === ""){
+                                document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                                const faviconLink = document.querySelector('#faviconImage');
+    
+                                faviconLink.href = './assets/img/music.png';
+            
+                            }else{
+            
+                                document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
+                                const faviconLink = document.querySelector('#faviconImage');
+    
+                                faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
+                            }
+        
+                        }else{
+                            console.log('Some data not founded')
+                            
+                            
+                        }
+                        document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                        const faviconLink = document.querySelector('#faviconImage');
+    
+                        faviconLink.href = './assets/img/music.png';
+                        document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
+                        document.title = file.name.slice(0, -4);
+    
+                       
+                        document.querySelector(".song__album-name").textContent = 'Unknown Album'
+                        document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
+                        document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
+                        document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
+                        document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
+                        console.log('yo')
+        
+                    }
                 }
                 
-                catch(error){
-                    console.log(error)
     
-                    if(tag.tags.hasOwnProperty('picture')){
-                        if(tag.tags.picture.description === ""){
-                            document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
-                            const faviconLink = document.querySelector('#faviconImage');
+            },
+            onError: function(error) {
+                console.log(error);
+                document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                const faviconLink = document.querySelector('#faviconImage');
+                faviconLink.href = './assets/img/music.png';
 
-                            faviconLink.href = './assets/img/music.png';
-        
-                        }else{
-        
-                            document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
-                            const faviconLink = document.querySelector('#faviconImage');
+                document.querySelector(".music__title-name").textContent = 'Song Title';
+                document.title = 'Jo__Sound__Visualizer';
 
-                            faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
-                        }
-    
-                    }else{
-                        console.log('Some data not founded')
-                        
-                        
-                    }
-                    document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
-                    const faviconLink = document.querySelector('#faviconImage');
-
-                    faviconLink.href = './assets/img/music.png';
-                    document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
-                    document.title = file.name.slice(0, -4);
-
-                   
-                    document.querySelector(".song__album-name").textContent = 'Unknown Album'
-                    document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
-                    document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
-                    document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
-                    document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
-    
-                }
-                }
+                document.querySelector(".song__album-name").textContent = 'Unknown Album'
+                document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
+                document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
+                document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
+                document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
+                console.log('hi')
+              }
         })
 
     }
@@ -597,8 +694,43 @@ window.addEventListener('load', function(){
     changeVolume()
 })
 
+function fileValidation() {
+    
+    var fileInput =
+        document.getElementById('songUpload');
+     
+    var filePath = fileInput.value;
+ 
+    // Allowing file type
+    var allowedExtensions =
+/(\.mp3|\.wav|\.mp4)$/i;
+     
+    if (!allowedExtensions.exec(filePath)) {
+       
+        swalhat()
+        
+    }
+}
 
-
+function swalhat(){
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'File Not Supported, Please Upload only Audio Files'
+      })
+    
+}
 
 const canvas = document.getElementById('canvas1')
 const musicPlayer = document.querySelector('.music__container')
@@ -611,7 +743,7 @@ function resizeFn(){
     canvas.width = window.innerWidth
 
     canvas.height = window.innerHeight
-    let marginNet = window.innerHeight * 0.34
+    let marginNet = window.innerHeight * .36
     musicPlayer.style.marginTop = `${-marginNet}px`
 }
 
@@ -686,6 +818,8 @@ function requestFullScreen(element) {
             wscript.SendKeys("{F11}");
         }
     }
+    let marginNet = window.innerHeight * .28
+    musicPlayer.style.marginTop = `${-marginNet}px`
 }
 
 
@@ -703,6 +837,8 @@ function cancelFullScreen(element) {
             wscript.SendKeys("{F11}");
         }
     }
+    let marginNet = window.innerHeight * .36
+    musicPlayer.style.marginTop = `${-marginNet}px`
 }
 
 // var elem = document.body; // Make the body go full screen.
@@ -736,3 +872,23 @@ window.addEventListener('keydown', (e)=> {
         fullscreenChecker()
     }
 })
+
+window.onbeforeunload = function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3690,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+    
+    Toast.fire({
+        icon: 'info',
+        title: 'Window Close Event Cancelled'
+    })
+    return 'Are You Sure To Leave ? ';
+}
