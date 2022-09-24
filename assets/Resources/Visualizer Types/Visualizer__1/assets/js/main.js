@@ -54,7 +54,7 @@ function playMusic(){
     softplay.classList.remove('ri-play-line');
     softplay.classList.add('ri-pause-fill');
     audio1.play();
-    // visualizer()
+    visualizer()
 
    
 }
@@ -332,7 +332,7 @@ input.addEventListener('change', (event) => {
                         }else{
                         }
                         document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
-                        document.title = tag.tags.title;
+                        document.title = file.name.slice(0, -4)
                         document.querySelector(".song__album-name").textContent = tag.tags.album;
                         document.querySelector('.song__details_artist-name').textContent = tag.tags.artist
                         document.querySelector('.song__details_singer-name').textContent = tag.tags.artist
@@ -364,7 +364,7 @@ input.addEventListener('change', (event) => {
     
                         faviconLink.href = './assets/img/music.png';
                         document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
-                        document.title = tag.tags.title;
+                        document.title = file.name.slice(0, -4);
                         document.querySelector(".song__album-name").textContent =  `Unknown Album`;
                         document.querySelector('.song__details_artist-name').textContent = `Unknown Artist`
                         document.querySelector('.song__details_singer-name').textContent = `Unknown Singer`
