@@ -129,7 +129,6 @@ audio1.addEventListener("timeupdate", (e)=>{
 })
 
 window.addEventListener('keydown', (e)=> {
-    console.log(e.key)
    
 })
  
@@ -343,7 +342,6 @@ input.addEventListener('change', (event) => {
                     }
                     
                     catch(error){
-                        console.log(error)
         
                         if(tag.tags.hasOwnProperty('picture')){
                             if(tag.tags.picture.description === ""){
@@ -370,7 +368,6 @@ input.addEventListener('change', (event) => {
                         document.querySelector('.song__details_singer-name').textContent = `Unknown Singer`
                         document.querySelector('.song__details_genre-name').textContent = `Unknown Genre`
                         document.querySelector('.song__details_date-released_year').textContent = window.moment(tag.tags.year).format('YYYY')
-                        console.log('yo')
         
                     }
                 }else{
@@ -413,7 +410,6 @@ input.addEventListener('change', (event) => {
                     
                     catch(error){
                         
-                        console.log(error)
         
                         if(tag.tags.hasOwnProperty('picture')){
                             if(tag.tags.picture.description === ""){
@@ -448,7 +444,6 @@ input.addEventListener('change', (event) => {
                         document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
                         document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
                         document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
-                        console.log('yo')
         
                     }
                 }
@@ -456,7 +451,6 @@ input.addEventListener('change', (event) => {
     
             },
             onError: function(error) {
-                console.log(error);
                 document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
                 const faviconLink = document.querySelector('#faviconImage');
                 faviconLink.href = './assets/img/music.png';
@@ -469,7 +463,6 @@ input.addEventListener('change', (event) => {
                 document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
                 document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
                 document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
-                console.log('hi')
               }
         })
 
@@ -794,7 +787,7 @@ function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
         ctx.rotate(i * 8.1)
-        const hue = i * 3
+        const hue = 150 + i * 9
         ctx.strokeStyle = 'hsl(' + hue + ',100%,' + barHeight/3 + '%)' 
         ctx.font = dataArray[i] + 'px Helvetica'
         ctx.fillText('J', 40, barHeight * 1.3)
@@ -873,7 +866,6 @@ function fullscreenChecker(){
 }
 
 window.addEventListener('keydown', (e)=> {
-    console.log(e.key)
     if(e.key === 'f' || e.key === 'F' || e.key === 'F11' || e.key === 'Escape'){
         fullscreenChecker()
     }

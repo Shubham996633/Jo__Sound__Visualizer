@@ -4,24 +4,121 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jo__Sound__Visualizer</title>
+    <title>Jo__Music__App</title>
+
+                <!-- Remixcons -->
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
                 <!-- CSS -->
+    <link rel="shortcut icon" href="assets/img/music.png" type="image/x-icon" id = "faviconImage">
 
     <link rel="stylesheet" href="assets/css/style.css">
-
-
+    
 </head>
 <body>
-<div id='container'>
-        <canvas id="canvas1"></canvas>
-        <audio id="audio1" controls></audio>
-        <input type='file' id='fileupload' accept='audio/*' />
 
-</div>
+    <div class="canvas">
+        <canvas id="canvas1"></canvas>        
+    </div>
 
-                    <!-- JavaScript -->
+    <div class="music__container">
 
-    <script src="assets/js/script.js"></script>
+    <div class="music__player">
+        <div class="player__img">
+            <div class="music__img" style="background-image: url(assets/img/music.png);"></div>
+
+
+        </div>
+        <div class="player__data">
+            <div class="music__title">
+                <h1 class = "music__title-name" >Song Title</h1>
+            </div>
+            <div class="song__details">
+                <div class="song__details_artist">
+                    <h4 class = "song__details_artist-name">Album Artist Name</h4>
+                </div>
+                <div class="song__details_singer">
+                    <h4  class="song__details_singer-name">Album Singer Name</h4>
+                </div>
+                <div class="song__details_genre">
+                    <h4  class="song__details_genre-name">Album Genre Name</h4>
+                </div>
+                <div class="song__details_date">
+                    <h4  class="song__details_date-released_year">Album Released year</h4>
+                </div><div class="song__album">
+                    <h4  class="song__album-name">Album name</h3>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+        <div class="main__player">
+            <div class="song__player">
+            <span class="current-time">0:00</span>
+            
+            <div class="progress-area">
+                <div class="progress-bar">
+                    <audio id="main-audio" class="audio">
+                        <source src="" id="src" />
+                      </audio>
+                </div>
+            </div>
+            <span class="max-duration">0:00</span>
+            </div>
+
+            
+
+            <div class="controls">
+                <i class="ri-play-line playeraction" id = 'softplay'></i>
+                <i class="ri-repeat-fill faded repeatsong"></i>
+  
+                    <span class="range-slider" id = 'range-slide'>
+                      <span id="rs-bullet" class="rs-label">72</span>
+                      
+                      <input id="rs-range-line" class="rs-range volume-slider" type="range" value="72" min="0" max="100">
+                    </span>
+                    
+                   
+                    
+                <i class="ri-volume-up-line volumeTrack" onclick="event.stopPropagation(); window.event.cancelBubble = true;"></i>
+                  
+               
+
+                <div class="song-file" id="songDropArea">
+                    <label for="songUpload"> Upload Song</label>
+                    <input type="file" id="songUpload" class = "uploader" accept=".mp3, .wav, .mp4" accept="audio/*">
+                </div>
+
+
+                <i class="ri-fullscreen-line fullscreen__mode"></i>
+                
+            </div>
+
+           
+
+        </div>
+    
+    </div>
+
+                <!-- JavaScript -->
+
+                <!-- JSMediaTags` -->
+
+
+    <script src="assets/js/jsmediatags.min.js"></script>
+    <script src="assets/js/jsmediatags.js"></script>
+                    
+    
+                    <!-- Sweet Alert -->
+
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+
+                <!-- Moment JS -->
+
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
