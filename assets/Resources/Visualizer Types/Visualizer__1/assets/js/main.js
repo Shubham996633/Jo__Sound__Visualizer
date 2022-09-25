@@ -757,7 +757,7 @@ function visualizer(){
         audioSource.connect(analyser);
         analyser.connect(audioContext.destination);
     }
-    analyser.fftSize = 2048
+    analyser.fftSize = 4096
     const bufferLength = analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
 
