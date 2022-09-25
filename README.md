@@ -11,7 +11,7 @@
 ## To Visit Click Here : <a href = "#">JoVisualizer</a>
 
 
-## To Read Docs Click Here : <a href = "">JoVisualizer Docs</a>
+## To Read Docs Click Here : <a href = "https://github.com/Shubham996633/Jo__Sound__Visualizer/blob/main/assets/Docs/Docs.md">JoVisualizer Docs</a>
 
 ## Complete Overview
 
@@ -36,6 +36,7 @@
 
 
 <br>
+
 ### &ensp; &ensp;   It will open the Visualizer in new window
 
 <br><br> 
