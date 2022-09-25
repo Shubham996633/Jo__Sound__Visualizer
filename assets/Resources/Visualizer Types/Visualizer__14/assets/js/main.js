@@ -728,7 +728,7 @@ const canvas = document.getElementById('canvas1')
 const musicPlayer = document.querySelector('.music__container')
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
-let marginNet = window.innerHeight * 0.34
+let marginNet = window.innerHeight * 0.36
 musicPlayer.style.marginTop = `${-marginNet}px`
 
 function resizeFn(){
