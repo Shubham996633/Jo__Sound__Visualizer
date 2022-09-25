@@ -402,3 +402,18 @@ body{
   opacity: .72;
 }
 
+.swal2-popup {
+  position: relative;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0,100%);
+  width: 32em;
+  max-width: 100%;
+  padding: 0 0 1.25em;
+  border: none;
+  border-radius: 5px;
+  background: #1b1a1a;
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 3px solid white;
+}

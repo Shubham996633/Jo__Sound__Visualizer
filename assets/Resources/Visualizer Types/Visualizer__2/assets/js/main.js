@@ -894,3 +894,64 @@ window.onbeforeunload = function () {
 }
 
 
+var widths = [0, 870, 3840];
+
+function resizeFns() {
+    if (window.innerWidth<widths[1]) {
+       
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            confirmButtonColor: 'red',
+            
+            confirmButtonText: 'Close',
+            text: 'Your Screen Size must be greator than 870px to run the Visualizer',
+            footer: 'Please Try on a device whose width Greator than 870px '
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.close()
+            }
+          })
+        
+
+        document.querySelector('.canvas').style.transform = 'scale(0)'
+        document.querySelector('.music__container').style.transform = 'scale(0)'
+
+      
+
+
+
+
+    }else{
+
+        shortcuts()
+        document.querySelector('.canvas').style.transform = 'scale(1)'
+        document.querySelector('.music__container').style.transform = 'scale(1)'
+    }
+}
+
+window.onload = resizeFns;
+resizeFns();
+
+function shortcuts(){
+
+
+    Swal.fire({
+        title: 'Keyboard Shortcuts',
+        html:
+    'Press <b>`P/p`</b> to <b><em>Play/Pause</em></b> <br>' +
+    ' Press <b>`R/r`</b> to toggle <b><em>Repeat Mode</em></b><br>' +
+    'Press <b>`F/f`</b> to toggle <b><em>Full-Screen Mode</em></b><br>' + 
+    'Control <b><em>Audio Level</em></b> via <b><em>`Arrow Up and Down Keys`</em></b><br' ,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+
+      document.querySelector('.swal2-popup').style.background = '#1b1a1a'
+      document.querySelector('.swal2-popup').style.color = 'white'
+    
+}
