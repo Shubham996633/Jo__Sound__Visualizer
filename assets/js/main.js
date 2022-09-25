@@ -109,11 +109,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__4/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/4.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -122,7 +122,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Lines</span>
                             </h3>
 
                             <p class="card-price">
@@ -138,11 +138,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__15/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/15.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -151,7 +151,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Burst</span>
                             </h3>
 
                             <p class="card-price">
@@ -168,11 +168,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__14/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/14.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -181,7 +181,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Spinner</span>
                             </h3>
 
                             <p class="card-price">
@@ -197,11 +197,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__12/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/12.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -210,7 +210,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Blue Spiral</span>
                             </h3>
 
                             <p class="card-price">
@@ -226,11 +226,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__8/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/8.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -239,7 +239,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Lines Spinner</span>
                             </h3>
 
                             <p class="card-price">
@@ -254,11 +254,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__11/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/11.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -267,7 +267,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Smile</span>
                             </h3>
 
                             <p class="card-price">
@@ -283,11 +283,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__3/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/3.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -296,7 +296,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Image</span>
                             </h3>
 
                             <p class="card-price">
@@ -311,11 +311,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__7/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/7.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -324,7 +324,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Alphabet</span>
                             </h3>
 
                             <p class="card-price">
@@ -339,11 +339,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__5/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/5.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -352,7 +352,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Spectrum</span>
                             </h3>
 
                             <p class="card-price">
@@ -367,11 +367,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__13/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/13.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -380,7 +380,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Circle Line</span>
                             </h3>
 
                             <p class="card-price">
@@ -395,11 +395,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__6/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/6.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -408,7 +408,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Burster</span>
                             </h3>
 
                             <p class="card-price">
@@ -423,11 +423,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__9/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/9.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -436,7 +436,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Wheel</span>
                             </h3>
 
                             <p class="card-price">
@@ -451,11 +451,11 @@ mustTry.innerHTML = `
 
                         <li class="scrollbar-item">
                         <a onclick=
-                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__2/index.html");' class="card-title">
+                            'fullScreen("./assets/Resources/Visualizer Types/Visualizer__10/index.html");' class="card-title">
                         <div class="latest-game-card">
 
                         <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
-                            <img src = "assets/img/2.png" width="400" height="470" loading="lazy"
+                            <img src = "assets/img/10.png" width="400" height="470" loading="lazy"
                             alt="visualizer1" class="img-cover">
                         </figure>
 
@@ -464,7 +464,7 @@ mustTry.innerHTML = `
                        
 
                             <h3 class="h3">
-                            Visualizer <span class="span">Circle</span>
+                            Visualizer <span class="span">Focuser</span>
                             </h3>
 
                             <p class="card-price">
