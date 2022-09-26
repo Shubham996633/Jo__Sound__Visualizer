@@ -353,6 +353,7 @@ input.addEventListener('change', (event) => {
                             }
         
                         }else{
+                            console.log('Some data not founded')
                             
                             
                         }
@@ -408,43 +409,126 @@ input.addEventListener('change', (event) => {
                     }
                     
                     catch(error){
+                        console.log(error)
                         
+                        
+                            if(tag.tags.hasOwnProperty('picture')){
+                                if(tag.tags.picture.description === ""){
+                                    document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                                    const faviconLink = document.querySelector('#faviconImage');
         
-                        if(tag.tags.hasOwnProperty('picture')){
-                            if(tag.tags.picture.description === ""){
-                                document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
-                                const faviconLink = document.querySelector('#faviconImage');
-    
-                                faviconLink.href = './assets/img/music.png';
+                                    faviconLink.href = './assets/img/music.png';
+                
+                                }else{
+                
+                                    document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
+                                    const faviconLink = document.querySelector('#faviconImage');
+        
+                                    faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
+                                }
             
                             }else{
-            
-                                document.querySelector('.music__img').style.backgroundImage = 'url(data:'+format+';base64,'+window.btoa(base64String)+')'
-                                const faviconLink = document.querySelector('#faviconImage');
-    
-                                faviconLink.href = 'data:'+format+';base64,'+window.btoa(base64String)+'';
+                                console.log('Some data not founded')
+                                
+                                
                             }
+                            document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
+                            const faviconLink = document.querySelector('#faviconImage');
         
-                        }else{
-                            console.log('Some data not founded')
+                            faviconLink.href = './assets/img/music.png';
+                            document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
+                            document.title = file.name.slice(0, -4);
+        
+                            if(tag.tags.hasOwnProperty('TALB')){
+
+                                document.querySelector(".song__album-name").textContent = tag.tags.album;
+                                // document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
+                                // document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
+                                // document.querySelector('.song__details_genre-name').textContent = tag.tags.TCON.data
+                                // document.querySelector('.song__details_date-released_year').textContent = tag.tags.TDRC.data
+
+                            }else{
+                                document.querySelector(".song__album-name").textContent = 'Unknown Album'
+                                // document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
+                                // document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
+                                // document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
+                                // document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
+                            }
+
+                            if(tag.tags.hasOwnProperty('TPE2')){
+
+                                // document.querySelector(".song__album-name").textContent = tag.tags.album;
+                                document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
+                                // document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
+                                // document.querySelector('.song__details_genre-name').textContent = tag.tags.TCON.data
+                                // document.querySelector('.song__details_date-released_year').textContent = tag.tags.TDRC.data
+
+                            }else{
+                                // document.querySelector(".song__album-name").textContent = 'Unknown Album'
+                                document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
+                                // document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
+                                // document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
+                                // document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
+                            }
+
+                            if(tag.tags.hasOwnProperty('TPE1')){
+
+                                // document.querySelector(".song__album-name").textContent = tag.tags.album;
+                                // document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
+                                document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
+                                // document.querySelector('.song__details_genre-name').textContent = tag.tags.TCON.data
+                                // document.querySelector('.song__details_date-released_year').textContent = tag.tags.TDRC.data
+
+                            }else{
+                                // document.querySelector(".song__album-name").textContent = 'Unknown Album'
+                                // document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
+                                document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
+                                // document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
+                                // document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
+                            }
+
+                            if(tag.tags.hasOwnProperty('TCON')){
+
+                                // document.querySelector(".song__album-name").textContent = tag.tags.album;
+                                // document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
+                                // document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
+                                document.querySelector('.song__details_genre-name').textContent = tag.tags.TCON.data
+                                // document.querySelector('.song__details_date-released_year').textContent = tag.tags.TDRC.data
+
+                            }else{
+                                // document.querySelector(".song__album-name").textContent = 'Unknown Album'
+                                // document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
+                                // document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
+                                document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
+                                // document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
+                            }
+
+                            if(tag.tags.hasOwnProperty('TDRC')){
+
+                                // document.querySelector(".song__album-name").textContent = tag.tags.album;
+                                // document.querySelector('.song__details_artist-name').textContent = tag.tags.TPE2.data
+                                // document.querySelector('.song__details_singer-name').textContent = tag.tags.TPE1.data
+                                // document.querySelector('.song__details_genre-name').textContent = tag.tags.TCON.data
+                                document.querySelector('.song__details_date-released_year').textContent = tag.tags.TDRC.data
+
+                            }else if((tag.tags.hasOwnProperty('TYER'))){
+                                document.querySelector('.song__details_date-released_year').textContent = tag.tags.TYER.data
+
+                            }else{
+                                // document.querySelector(".song__album-name").textContent = 'Unknown Album'
+                                // document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
+                                // document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
+                                // document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
+                                document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
+                            }
+
                             
-                            
+
+
+
                         }
-                        document.querySelector(".music__img").style.backgroundImage = 'url(./assets/img/music.png)';
-                        const faviconLink = document.querySelector('#faviconImage');
-    
-                        faviconLink.href = './assets/img/music.png';
-                        document.querySelector(".music__title-name").textContent = file.name.slice(0, -4);
-                        document.title = file.name.slice(0, -4);
-    
-                       
-                        document.querySelector(".song__album-name").textContent = 'Unknown Album'
-                        document.querySelector('.song__details_artist-name').textContent = 'Unknown Artist'
-                        document.querySelector('.song__details_singer-name').textContent = 'Unknown Singer'
-                        document.querySelector('.song__details_genre-name').textContent = 'Unknown Genre'
-                        document.querySelector('.song__details_date-released_year').textContent = 'Unknown Year'
         
-                    }
+                    
                 }
                 
     
@@ -469,6 +553,7 @@ input.addEventListener('change', (event) => {
 
     
 })
+
 
 
 var rangeSlider = document.getElementById("rs-range-line");
