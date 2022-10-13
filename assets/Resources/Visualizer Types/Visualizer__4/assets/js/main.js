@@ -158,6 +158,8 @@ progressArea.addEventListener("click", (e)=>{
         let clickedOffsetX = e.offsetX; 
         let songDuration = audio1.duration; 
         audio1.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+        document.querySelector('.progress-area').setAttribute('title', `Seek Here`)
+
     }
     
     
@@ -170,6 +172,8 @@ progressArea.addEventListener("dragstart", (e)=>{
     let songDuration = audio1.duration; 
     
     audio1.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+    document.querySelector('.progress-area').setAttribute('title', `Seek Here`)
+
     
 });
   
@@ -566,6 +570,7 @@ function showSliderValue() {
   rangeBullet.innerHTML = rangeSlider.value;
   var bulletPosition = (rangeSlider.value /rangeSlider.max);
   rangeBullet.style.left = (bulletPosition * 150) + "px";
+document.querySelector('.volumeTrack').setAttribute('title', `${volumePopupvalue.textContent}%`)
  
    if(volumePopupvalue.textContent === '0'){
         document.querySelector('.volumeTrack').classList.remove('ri-volume-up-line')
@@ -709,7 +714,9 @@ volumeSlider.addEventListener('click', changeVolume)
 function changeVolume(){
     let volumeValueChange = volumePopupvalue.textContent
     
+    
     audio1.volume = volumeValueChange / 100
+    
    
 }
 
@@ -860,20 +867,26 @@ function visualizer(){
 }
 
 
+
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
     
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 1.2
+        barHeight = dataArray[i] * 2.1
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i * bufferLength / 1.2)
-        const hue = 200 * i * 5
-        ctx.lineWidth = 12
-        ctx.strokeStyle = 'hsl(' + hue + ',100%, 50%)' 
+        ctx.rotate(i * bufferLength * -3.99999)
+        const hue = 250 + i * 2
+        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
         ctx.beginPath()
-        ctx.moveTo(0, barHeight/1.1)
-        ctx.lineTo(barHeight/1.1, barHeight)
-        ctx.stroke()
+        ctx.arc(-69, barHeight/6, barHeight/10, 0, Math.PI * 2)
+      
+        ctx.arc(-69, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
+        
+        ctx.arc(-69, barHeight/2, barHeight/30, 0, Math.PI * 2)
+       
+        ctx.arc(-69, barHeight/3, barHeight/40, 0, Math.PI * 2)
+        ctx.fill()
+
         x += barWidth
         ctx.restore()
     }
@@ -943,6 +956,8 @@ function fullscreenChecker(){
     }
 }
 
+
+
 window.addEventListener('keydown', (e)=> {
     if(e.key === 'f' || e.key === 'F' || e.key === 'F11' || e.key === 'Escape'){
         fullscreenChecker()
@@ -968,6 +983,8 @@ window.onbeforeunload = function () {
     })
     return 'Are You Sure To Leave ? ';
 }
+
+
 var widths = [0, 870, 3840];
 
 function resizeFns() {
@@ -1029,3 +1046,10 @@ function shortcuts(){
       document.querySelector('.swal2-popup').style.color = 'white'
     
 }
+
+document.querySelector('.playeraction').setAttribute('title', 'Play/Pause')
+document.querySelector('.repeatsong').setAttribute('title', 'Repeat')
+document.querySelector('.volumeTrack').setAttribute('title', "Volume")
+document.querySelector('.uploadsonger').setAttribute('title', 'Upload a Song')
+document.querySelector('.fullscreen__mode').setAttribute('title', 'Enter in Fullscreen Mode')
+document.querySelector('.progress-area').setAttribute('title', `Seek Here`)

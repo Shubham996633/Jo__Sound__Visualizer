@@ -158,6 +158,8 @@ progressArea.addEventListener("click", (e)=>{
         let clickedOffsetX = e.offsetX; 
         let songDuration = audio1.duration; 
         audio1.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+        document.querySelector('.progress-area').setAttribute('title', `Seek Here`)
+
     }
     
     
@@ -170,6 +172,8 @@ progressArea.addEventListener("dragstart", (e)=>{
     let songDuration = audio1.duration; 
     
     audio1.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+    document.querySelector('.progress-area').setAttribute('title', `Seek Here`)
+
     
 });
   
@@ -566,6 +570,7 @@ function showSliderValue() {
   rangeBullet.innerHTML = rangeSlider.value;
   var bulletPosition = (rangeSlider.value /rangeSlider.max);
   rangeBullet.style.left = (bulletPosition * 150) + "px";
+document.querySelector('.volumeTrack').setAttribute('title', `${volumePopupvalue.textContent}%`)
  
    if(volumePopupvalue.textContent === '0'){
         document.querySelector('.volumeTrack').classList.remove('ri-volume-up-line')
@@ -709,7 +714,9 @@ volumeSlider.addEventListener('click', changeVolume)
 function changeVolume(){
     let volumeValueChange = volumePopupvalue.textContent
     
+    
     audio1.volume = volumeValueChange / 100
+    
    
 }
 
@@ -1039,3 +1046,10 @@ function shortcuts(){
       document.querySelector('.swal2-popup').style.color = 'white'
     
 }
+
+document.querySelector('.playeraction').setAttribute('title', 'Play/Pause')
+document.querySelector('.repeatsong').setAttribute('title', 'Repeat')
+document.querySelector('.volumeTrack').setAttribute('title', "Volume")
+document.querySelector('.uploadsonger').setAttribute('title', 'Upload a Song')
+document.querySelector('.fullscreen__mode').setAttribute('title', 'Enter in Fullscreen Mode')
+document.querySelector('.progress-area').setAttribute('title', `Seek Here`)

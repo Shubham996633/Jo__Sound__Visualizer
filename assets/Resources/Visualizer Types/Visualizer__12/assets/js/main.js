@@ -158,6 +158,8 @@ progressArea.addEventListener("click", (e)=>{
         let clickedOffsetX = e.offsetX; 
         let songDuration = audio1.duration; 
         audio1.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+        document.querySelector('.progress-area').setAttribute('title', `Seek Here`)
+
     }
     
     
@@ -170,6 +172,8 @@ progressArea.addEventListener("dragstart", (e)=>{
     let songDuration = audio1.duration; 
     
     audio1.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+    document.querySelector('.progress-area').setAttribute('title', `Seek Here`)
+
     
 });
   
@@ -566,6 +570,7 @@ function showSliderValue() {
   rangeBullet.innerHTML = rangeSlider.value;
   var bulletPosition = (rangeSlider.value /rangeSlider.max);
   rangeBullet.style.left = (bulletPosition * 150) + "px";
+document.querySelector('.volumeTrack').setAttribute('title', `${volumePopupvalue.textContent}%`)
  
    if(volumePopupvalue.textContent === '0'){
         document.querySelector('.volumeTrack').classList.remove('ri-volume-up-line')
@@ -709,7 +714,9 @@ volumeSlider.addEventListener('click', changeVolume)
 function changeVolume(){
     let volumeValueChange = volumePopupvalue.textContent
     
+    
     audio1.volume = volumeValueChange / 100
+    
    
 }
 
@@ -841,65 +848,49 @@ function visualizer(){
         audioSource.connect(analyser);
         analyser.connect(audioContext.destination);
     }
-    analyser.fftSize = 256;
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
+    analyser.fftSize = 512
+    const bufferLength = analyser.frequencyBinCount
+    const dataArray = new Uint8Array(bufferLength)
 
-    const barWidth = 15;
-    let barHeight;
-    let x;
+    const barWidth = 15
+    let barHeight
+    let x
 
     function animate(){
-        x = 0;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        analyser.getByteFrequencyData(dataArray);
-        drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray);
-        requestAnimationFrame(animate);
+        x = 0
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        analyser.getByteFrequencyData(dataArray)
+        drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray)
+        requestAnimationFrame(animate)
     }
-    animate();
+    animate()
 }
 
+
+
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
-    for (let i = 0; i < bufferLength; i++) {
-          
-          barHeight = dataArray[i] * 1.5;
-          ctx.save();
-          let x = Math.sin(i * Math.PI / 180) + 100;
-          let y = Math.cos(i * Math.PI / 180) + 100;
-          ctx.translate(canvas.width/2 + x, canvas.height/2)
-          ctx.rotate( i +  Math.PI * 2/bufferLength);
-
-          const hue = i * 0.9 + 180;
-          ctx.fillStyle = 'hsl(' + hue + ',100%, 50%)';
-          ctx.strokeStyle = 'hsl(' + hue + ',100%, 50%)';
-
-          ctx.shadowOffsetX = 10;
-          ctx.shadowOffsetY = 10;
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = 'rgba(0,0,0,1)';
-
-          ctx.globalCompositeOperation='source-over';
-
-          // line
-          ctx.lineWidth = barHeight/5;
-          ctx.beginPath();
-          ctx.moveTo(x,y);
-          ctx.lineTo(x, y - barHeight);
-          ctx.lineCap = "round";
-          ctx.stroke();
-          ctx.closePath();
+    
+    for(let i = 0; i < bufferLength; i++){
+        barHeight = dataArray[i] * 2.1
+        ctx.save()
+        ctx.translate(canvas.width/2, canvas.height/2)
+        ctx.rotate(i * bufferLength * -3.99999)
+        const hue = 250 + i * 2
+        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
+        ctx.beginPath()
+        ctx.arc(-69, barHeight/6, barHeight/10, 0, Math.PI * 2)
+      
+        ctx.arc(-69, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
         
-          // circle
-          ctx.beginPath();
-          ctx.arc(0, y + barHeight, barHeight/10, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.lineWidth = 1.5;
-          ctx.strokeStyle = 'hsl(1, 100%, ' + i/1.8 + '%)';
-          ctx.stroke();
+        ctx.arc(-69, barHeight/2, barHeight/30, 0, Math.PI * 2)
+       
+        ctx.arc(-69, barHeight/3, barHeight/40, 0, Math.PI * 2)
+        ctx.fill()
 
-          ctx.restore();
-          x += barWidth;
-        }
+        x += barWidth
+        ctx.restore()
+    }
+
 }
 
 
@@ -965,6 +956,8 @@ function fullscreenChecker(){
     }
 }
 
+
+
 window.addEventListener('keydown', (e)=> {
     if(e.key === 'f' || e.key === 'F' || e.key === 'F11' || e.key === 'Escape'){
         fullscreenChecker()
@@ -990,6 +983,8 @@ window.onbeforeunload = function () {
     })
     return 'Are You Sure To Leave ? ';
 }
+
+
 var widths = [0, 870, 3840];
 
 function resizeFns() {
@@ -1051,3 +1046,10 @@ function shortcuts(){
       document.querySelector('.swal2-popup').style.color = 'white'
     
 }
+
+document.querySelector('.playeraction').setAttribute('title', 'Play/Pause')
+document.querySelector('.repeatsong').setAttribute('title', 'Repeat')
+document.querySelector('.volumeTrack').setAttribute('title', "Volume")
+document.querySelector('.uploadsonger').setAttribute('title', 'Upload a Song')
+document.querySelector('.fullscreen__mode').setAttribute('title', 'Enter in Fullscreen Mode')
+document.querySelector('.progress-area').setAttribute('title', `Seek Here`)
