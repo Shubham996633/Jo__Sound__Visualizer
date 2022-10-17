@@ -848,7 +848,7 @@ function visualizer(){
         audioSource.connect(analyser);
         analyser.connect(audioContext.destination);
     }
-    analyser.fftSize = 512
+    analyser.fftSize = 256
     const bufferLength = analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
 
@@ -869,28 +869,21 @@ function visualizer(){
 
 
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
-    
+
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 2.1
+        barHeight = dataArray[i] * 0.9
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i * bufferLength * -3.99999)
-        const hue = 250 + i * 2
-        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
-        ctx.beginPath()
-        ctx.arc(-69, barHeight/6, barHeight/10, 0, Math.PI * 2)
-      
-        ctx.arc(-69, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
-        
-        ctx.arc(-69, barHeight/2, barHeight/30, 0, Math.PI * 2)
-       
-        ctx.arc(-69, barHeight/3, barHeight/40, 0, Math.PI * 2)
-        ctx.fill()
-
+        ctx.rotate(i * 0.6)
+        const hue = 30 * i * 0.6
+        ctx.fillStyle = 'hsl(' + hue + ',100%,' + barHeight/3 + '%)' 
+        ctx.strokeStyle = 'white' 
+        ctx.fillRect(barHeight/2, barHeight/2, barWidth, barHeight)
+        barHeight > 80 ? ctx.strokeRect(barHeight/2, barHeight/2, barWidth, barHeight * 1.2) : ctx.strokeRect(0, 0, 0, 0)
+        barHeight > 111? ctx.strokeRect(barHeight/2, barHeight/2 * 1.8, barWidth, barHeight * 1.2) : ctx.strokeRect(0, 0, 0, 0)
         x += barWidth
         ctx.restore()
     }
-
 }
 
 

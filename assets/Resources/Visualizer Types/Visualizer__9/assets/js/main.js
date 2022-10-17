@@ -833,6 +833,11 @@ function resizeFn(){
 
 window.addEventListener('resize', resizeFn)
 const ctx = canvas.getContext('2d')
+ctx.lineCap = 'square'
+ctx.shadowOffsetX = 15
+ctx.shadowOffsetY = 10
+ctx.shadowBlur = 5
+ctx.shadowColor = 'black'
 let audioSource
 let analyser
 
@@ -848,7 +853,7 @@ function visualizer(){
         audioSource.connect(analyser);
         analyser.connect(audioContext.destination);
     }
-    analyser.fftSize = 512
+    analyser.fftSize = 256
     const bufferLength = analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
 
@@ -869,25 +874,44 @@ function visualizer(){
 
 
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
-    
+
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 2.1
+        barHeight = dataArray[i] 
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i * bufferLength * -3.99999)
-        const hue = 250 + i * 2
-        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
+        ctx.rotate(i  * 6)
+        ctx.lineWidth = barHeight/4
         ctx.beginPath()
-        ctx.arc(-69, barHeight/6, barHeight/10, 0, Math.PI * 2)
-      
-        ctx.arc(-69, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
-        
-        ctx.arc(-69, barHeight/2, barHeight/30, 0, Math.PI * 2)
-       
-        ctx.arc(-69, barHeight/3, barHeight/40, 0, Math.PI * 2)
-        ctx.fill()
+        ctx.moveTo(0, 0)
+        ctx.lineTo(0, barHeight)
+        ctx.stroke()
 
+        ctx.lineWidth = barHeight/5
+        let hue = 150 + i * 3
+        ctx.strokeStyle = 'rgba(' + hue + ', 150, 50, 1)'
+        ctx.beginPath()
+        ctx.moveTo(0, 0)
+        ctx.lineTo(0, barHeight)
+        ctx.stroke()
+        // ctx.fillStyle = 'hsl(' + hue + ', 100%, 50%)' 
+        // ctx.fillRect(0, 0, barWidth, barHeight)
         x += barWidth
+        ctx.restore()
+    }
+
+    for(let i = bufferLength; i < 20; i--){
+        barHeight = dataArray[i] > 80 ? dataArray[i] : 80
+        ctx.save()
+        ctx.translate(canvas.width/2, canvas.height/2)
+        ctx.rotate(i * 3)
+        ctx.lineWidth = 1
+
+        ctx.beginPath()
+        ctx.arc(0, barHeight * 3.5, barHeight/3, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(' + hue + ', 150, 150, 1)'
+
+        ctx.fill()
+        ctx.stroke()
         ctx.restore()
     }
 

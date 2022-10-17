@@ -833,6 +833,10 @@ function resizeFn(){
 
 window.addEventListener('resize', resizeFn)
 const ctx = canvas.getContext('2d')
+ctx.shadowOffsetX = 5
+ctx.shadowOffsetY = 5
+ctx.shadowBlur = 0
+ctx.shadowColor = 'white'
 let audioSource
 let analyser
 
@@ -848,7 +852,7 @@ function visualizer(){
         audioSource.connect(analyser);
         analyser.connect(audioContext.destination);
     }
-    analyser.fftSize = 512
+    analyser.fftSize = 64
     const bufferLength = analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
 
@@ -869,27 +873,24 @@ function visualizer(){
 
 
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
-    
+
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 2.1
+        barHeight = dataArray[i] * 1.5
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i * bufferLength * -3.99999)
-        const hue = 250 + i * 2
-        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
-        ctx.beginPath()
-        ctx.arc(-69, barHeight/6, barHeight/10, 0, Math.PI * 2)
-      
-        ctx.arc(-69, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
-        
-        ctx.arc(-69, barHeight/2, barHeight/30, 0, Math.PI * 2)
-       
-        ctx.arc(-69, barHeight/3, barHeight/40, 0, Math.PI * 2)
-        ctx.fill()
-
+        ctx.rotate(i * 8.1)
+        const hue = 150 + i * 9
+        ctx.strokeStyle = 'hsl(' + hue + ',100%,' + barHeight/3 + '%)' 
+        ctx.font = dataArray[i] + 'px Helvetica'
+        ctx.fillText('J', 40, barHeight * 1.3)
+        ctx.strokeText('J', 40, barHeight * 1.3)
         x += barWidth
         ctx.restore()
     }
+    const fontSize = dataArray[15] * 3
+    ctx.font = fontSize + 'px Helvetica'
+    ctx.fillText('J', canvas.width/2 - fontSize/3, canvas.height/2 - fontSize/3)
+    ctx.strokeText('J', canvas.width/2 - fontSize/3, canvas.height/2 - fontSize/3)
 
 }
 

@@ -869,28 +869,23 @@ function visualizer(){
 
 
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
-    
-    for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 2.1
-        ctx.save()
-        ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i * bufferLength * -3.99999)
-        const hue = 250 + i * 2
-        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
-        ctx.beginPath()
-        ctx.arc(-69, barHeight/6, barHeight/10, 0, Math.PI * 2)
-      
-        ctx.arc(-69, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
-        
-        ctx.arc(-69, barHeight/2, barHeight/30, 0, Math.PI * 2)
-       
-        ctx.arc(-69, barHeight/3, barHeight/40, 0, Math.PI * 2)
-        ctx.fill()
+    for (let i = 0; i < bufferLength; i++) {
+         barHeight = dataArray[i] * 0.72;
+         barWidth = dataArray[i] * 0.3;
+         ctx.save();
+         let x = Math.sin(i/30 * Math.PI / 180) * 200;
+         let y = Math.cos(i/30 * Math.PI / 180) * 200;
+         ctx.translate(canvas.width/2 + x, canvas.height/2 - y/5)
+         ctx.rotate( i +  Math.PI * 2/bufferLength);
+         const hue = i / 6 + 180;
+         ctx.fillStyle = 'hsl(' + hue + ',100%, 50%)';
+         ctx.strokeStyle = 'hsl(1, 100%, ' + i/2 + '%)';
 
-        x += barWidth
-        ctx.restore()
-    }
-
+         ctx.fillRect(x, y, barWidth, barHeight);
+         ctx.strokeRect(x, y, barWidth, barHeight);
+         ctx.restore();
+         x += barWidth;
+      }
 }
 
 

@@ -848,7 +848,7 @@ function visualizer(){
         audioSource.connect(analyser);
         analyser.connect(audioContext.destination);
     }
-    analyser.fftSize = 512
+    analyser.fftSize = 128
     const bufferLength = analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
 
@@ -868,31 +868,38 @@ function visualizer(){
 
 
 
+ctx.lineWidth = 3
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
-    
+
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 2.1
+        barHeight = dataArray[i] * .9
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i * bufferLength * -3.99999)
-        const hue = 250 + i * 2
-        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
+        ctx.rotate(i * 2.4)
+        ctx.shadowBlur = 50
+        const hue = 180 + i * barHeight/15
+        ctx.strokeStyle = 'hsl(' + hue + ', 100%, 50%)' 
+        ctx.fillStyle = 'hsl(' + hue + ', 100%, 50%)'
+        ctx.lineWidth = barHeight/20 > 0.2 ? barHeight/20 : 0.2
         ctx.beginPath()
-        ctx.arc(-69, barHeight/6, barHeight/10, 0, Math.PI * 2)
-      
-        ctx.arc(-69, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
-        
-        ctx.arc(-69, barHeight/2, barHeight/30, 0, Math.PI * 2)
-       
-        ctx.arc(-69, barHeight/3, barHeight/40, 0, Math.PI * 2)
-        ctx.fill()
+        ctx.arc(barHeight + 75, barHeight + 75, 50, 0, Math.PI * 2)
+        ctx.moveTo(barHeight + 110, barHeight + 75)
+        ctx.arc(barHeight + 75, barHeight + 75, 35, 0, Math.PI)
+        ctx.stroke()
 
+        ctx.beginPath()
+        ctx.moveTo(barHeight + 65, barHeight + 65)
+        ctx.arc(barHeight + 60, barHeight + 65, 5, 0, Math.PI * 2)
+        ctx.moveTo(barHeight + 95, barHeight + 65)
+        ctx.arc(barHeight + 90, barHeight + 65, 5, 0, Math.PI * 2)
+        ctx.fill()
         x += barWidth
+
         ctx.restore()
+
     }
 
 }
-
 
 const fullscreenMode = document.querySelector('.fullscreen__mode')
 function requestFullScreen(element) {

@@ -848,7 +848,7 @@ function visualizer(){
         audioSource.connect(analyser);
         analyser.connect(audioContext.destination);
     }
-    analyser.fftSize = 512
+    analyser.fftSize = 128
     const bufferLength = analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
 
@@ -869,28 +869,29 @@ function visualizer(){
 
 
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
-    
+
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] * 2.1
+        barHeight = dataArray[i] * 1.5
         ctx.save()
         ctx.translate(canvas.width/2, canvas.height/2)
-        ctx.rotate(i * bufferLength * -3.99999)
-        const hue = 250 + i * 2
-        ctx.fillStyle = 'hsl(' + hue + ',100% ,50%)' 
+        ctx.rotate(i * Math.PI * 4 / bufferLength)
+        const hue = 150 * i + 3
+        ctx.fillStyle = 'hsl(' + hue + ',100%, 50%)'
+        ctx.strokeStyle = 'hsl(' + hue + ',100%, 50%)'
+        ctx.lineWidth = barHeight/9
         ctx.beginPath()
-        ctx.arc(-69, barHeight/6, barHeight/10, 0, Math.PI * 2)
-      
-        ctx.arc(-69, barHeight/1.5, barHeight/20, 0, Math.PI * 2)
-        
-        ctx.arc(-69, barHeight/2, barHeight/30, 0, Math.PI * 2)
-       
-        ctx.arc(-69, barHeight/3, barHeight/40, 0, Math.PI * 2)
+        ctx.moveTo(0, 0)
+        ctx.lineTo(0, barHeight)
+        ctx.stroke()
+        ctx.beginPath()
+        ctx.arc(0, barHeight + barHeight/12, barHeight/30, 0, Math.PI * 2)
         ctx.fill()
-
+        ctx.beginPath()
+        ctx.arc(0, barHeight + barHeight/10, barHeight/10, 0, Math.PI * 2)
+        ctx.fill()
         x += barWidth
         ctx.restore()
     }
-
 }
 
 
