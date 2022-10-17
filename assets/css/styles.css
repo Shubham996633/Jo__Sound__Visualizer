@@ -194,14 +194,7 @@ transition: var(--transition);
 
 .btn:is(:hover, :focus)::after { --translateX: -13px; }
 
-.has-scrollbar {
-display: flex;
-gap: 30px;
-overflow-x: auto;
-padding-block-end: 30px;
-scroll-snap-type: inline mandatory;
-margin-top: 1rem;
-}
+.has-scrollbar {display: flex;gap: 30px;overflow-x: auto;padding-block-end: 30px;scroll-snap-type: inline mandatory;margin-top: 3rem;}
 
 .has-scrollbar::-webkit-scrollbar { height: 10px; }
 
@@ -811,7 +804,7 @@ cursor: pointer;
 }
 
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb{
     background-color: hsl(225, 22%, 96%);
  
     
