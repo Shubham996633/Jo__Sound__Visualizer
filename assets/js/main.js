@@ -677,3 +677,9 @@ function startscroll(){
     window.scroll(0,offsets);
     console.log('yo')
 }
+
+window.onload = movedown
+
+function movedown(){
+   location = '#home'
+}
