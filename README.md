@@ -8,7 +8,7 @@
 
 <br>
 
-## To Visit Click Here : <a href = "https://bit.ly/JoVisualizer">JoVisualizer</a>
+## To Visit Click Here : <a href = "https://bit.ly/JoVisualizerSound">JoVisualizer</a>
 
 
 ## To Read Docs Click Here : <a href = "https://github.com/Shubham996633/Jo__Sound__Visualizer/blob/main/assets/Docs/Docs.md">JoVisualizer Docs</a>
